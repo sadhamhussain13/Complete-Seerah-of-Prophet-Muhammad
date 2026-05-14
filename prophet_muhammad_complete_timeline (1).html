@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Seerah Timeline — Prophet Muhammad ﷺ (570–632 CE)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f9f8f5;color:#1a1a18;min-height:100vh;padding:24px 16px}
+@media(prefers-color-scheme:dark){body{background:#1a1a18;color:#e2e0d6}}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font-size:22px;font-weight:500;color:#1a1a18;margin-bottom:4px;text-align:center}
+@media(prefers-color-scheme:dark){h1{color:#e2e0d6}}
+.sub{font-size:13px;color:#73726c;text-align:center;margin-bottom:20px}
+.filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.filter-row span{font-size:12px;color:#73726c}
+.fbtn{font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid #d3d1c7;background:transparent;color:#73726c;cursor:pointer;transition:all .15s}
+.fbtn.active,.fbtn:hover{background:#e2e0d6;color:#1a1a18;border-color:#b4b2a9}
+@media(prefers-color-scheme:dark){
+  .fbtn{border-color:#444441;color:#888780}
+  .fbtn.active,.fbtn:hover{background:#2c2c2a;color:#e2e0d6;border-color:#5f5e5a}
+}
+.tbl-wrap{overflow-x:auto;border:1px solid #d3d1c7;border-radius:12px;background:#fff}
+@media(prefers-color-scheme:dark){.tbl-wrap{border-color:#444441;background:#222220}}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead tr{background:#f1efe8}
+@media(prefers-color-scheme:dark){thead tr{background:#2c2c2a}}
+th{padding:10px 12px;text-align:left;font-weight:500;font-size:11px;color:#73726c;border-bottom:1px solid #d3d1c7;white-space:nowrap}
+@media(prefers-color-scheme:dark){th{border-color:#444441;color:#888780}}
+td{padding:9px 12px;vertical-align:top;border-bottom:1px solid #e8e6de;color:#1a1a18;line-height:1.55}
+@media(prefers-color-scheme:dark){td{border-color:#333331;color:#e2e0d6}}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f9f8f5}
+@media(prefers-color-scheme:dark){tr:hover td{background:#252523}}
+.yr{font-weight:500;white-space:nowrap;min-width:100px;font-size:12px}
+.phase{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap;display:inline-block}
+.ph-pre{background:#e1f5ee;color:#0f6e56}
+.ph-mak{background:#eeedfe;color:#3c3489}
+.ph-med{background:#faeeda;color:#633806}
+.ph-fin{background:#fcebeb;color:#791f1f}
+@media(prefers-color-scheme:dark){
+  .ph-pre{background:#04342c;color:#9fe1cb}
+  .ph-mak{background:#26215c;color:#cecbf6}
+  .ph-med{background:#412402;color:#fac775}
+  .ph-fin{background:#501313;color:#f7c1c1}
+}
+.cat{font-size:10px;color:#888780;font-style:italic}
+.ref{font-size:10.5px;color:#888780;margin-top:4px;border-top:1px solid #e8e6de;padding-top:4px}
+@media(prefers-color-scheme:dark){.ref{border-color:#333331;color:#5f5e5a}}
+.ev{margin-bottom:3px}
+.hdr-row td{font-weight:500;font-size:11px;color:#888780;padding:6px 12px;text-align:center;background:#f1efe8;letter-spacing:.04em}
+@media(prefers-color-scheme:dark){.hdr-row td{background:#2c2c2a;color:#5f5e5a}}
+.refs-sec{margin-top:28px;padding:18px;border:1px solid #d3d1c7;border-radius:12px;background:#fff}
+@media(prefers-color-scheme:dark){.refs-sec{border-color:#444441;background:#222220}}
+.refs-sec h2{font-size:15px;font-weight:500;color:#1a1a18;margin-bottom:12px}
+@media(prefers-color-scheme:dark){.refs-sec h2{color:#e2e0d6}}
+.refs-sec h3{font-size:12px;font-weight:500;color:#73726c;margin:10px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.refs-sec ul{list-style:none;padding:0;columns:2;gap:20px}
+@media(max-width:600px){.refs-sec ul{columns:1}}
+.refs-sec li{font-size:11.5px;color:#73726c;padding:3px 0 3px 10px;border-left:2px solid #d3d1c7;margin-bottom:4px;break-inside:avoid}
+@media(prefers-color-scheme:dark){.refs-sec li{color:#888780;border-color:#444441}}
+.count-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.count-pill{font-size:11px;padding:3px 10px;border-radius:20px;background:#f1efe8;color:#73726c}
+@media(prefers-color-scheme:dark){.count-pill{background:#2c2c2a;color:#888780}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Complete Seerah Timeline — Prophet Muhammad ﷺ</h1>
+<div class="sub">570 CE – 632 CE &nbsp;|&nbsp; All events authenticated from Qur'an, Sahih Hadith & Classical Seerah Sources</div>
+
+<div class="count-bar" id="count-bar"></div>
+
+<div class="filter-row">
+  <span>Filter by phase:</span>
+  <button class="fbtn active" onclick="filterPhase('all',this)">All Events</button>
+  <button class="fbtn" onclick="filterPhase('pre',this)">Pre-Prophethood</button>
+  <button class="fbtn" onclick="filterPhase('mak',this)">Makkan Phase</button>
+  <button class="fbtn" onclick="filterPhase('med',this)">Madinan Phase</button>
+  <button class="fbtn" onclick="filterPhase('fin',this)">Final Years</button>
+</div>
+
+<div class="tbl-wrap">
+<table id="main-table">
+<thead>
+<tr>
+  <th style="min-width:100px">Year (CE / AH)</th>
+  <th style="min-width:80px">Phase</th>
+  <th style="min-width:150px">Category</th>
+  <th style="min-width:320px">Event(s)</th>
+  <th style="min-width:200px">Reference</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="refs-sec">
+<h2>References Used in This Timeline</h2>
+<h3>Qur'anic References</h3>
+<ul>
+<li>Al-'Alaq 96:1–5 — First revelation</li>
+<li>Al-Muddaththir 74:1–7 — Command to warn</li>
+<li>Al-Hijr 15:94 — Command to proclaim openly</li>
+<li>Al-Isra' 17:1 — Night Journey (Isra')</li>
+<li>An-Najm 53:1–18 — Ascension (Mi'raj)</li>
+<li>Al-Baqarah 2:183–185 — Ramadan fasting ordained</li>
+<li>Al-Baqarah 2:144 — Qiblah changed to Makkah</li>
+<li>Al-Ma'idah 5:90 — Final prohibition of alcohol</li>
+<li>An-Nur 24:11–26 — Incident of Ifk (innocence of 'A'ishah)</li>
+<li>Al-Ahzab 33:37–40 — Marriage to Zaynab bint Jahsh</li>
+<li>Al-Ahzab 33:50 — Specific marriages of the Prophet ﷺ</li>
+<li>At-Tawbah 9:40 — Cave of Thawr (two in the cave)</li>
+<li>Al-Fath 48:1–3 — Victory after Hudaybiyyah</li>
+<li>An-Nasr 110:1–3 — Conquest of Makkah</li>
+<li>Al-Ma'idah 5:3 — Completion of religion (Final sermon)</li>
+<li>Al-Inshirah 94:1–4 — Chest-opening miracle</li>
+<li>Al-Anfal 8:9,17 — Battle of Badr (angels sent)</li>
+<li>Al-Imran 3:123 — Victory at Badr</li>
+<li>Al-Imran 3:140–144 — Battle of Uhud lessons</li>
+<li>Al-Ahzab 33:9–10 — Battle of Khandaq</li>
+<li>At-Tawbah 9:25–26 — Battle of Hunayn</li>
+<li>At-Tawbah 9:38–42 — Battle of Tabuk</li>
+<li>At-Tawbah 9:118 — Ka'b ibn Malik's pardon</li>
+<li>At-Tawbah 9:84 — Prohibition of prayer over hypocrites</li>
+<li>Al-Hashr 59:2–4 — Expulsion of Banu Nadir</li>
+<li>Al-Qasas 28:56 — Abu Talib's death</li>
+<li>Al-Imran 3:144 — Abu Bakr's address at death of Prophet</li>
+</ul>
+<h3>Sahih Hadith References (Bukhari & Muslim)</h3>
+<ul>
+<li>Bukhari #3 — Full first revelation account</li>
+<li>Bukhari #349 — Isra' and Mi'raj in detail</li>
+<li>Bukhari #403 — Qiblah change mid-prayer</li>
+<li>Bukhari #1060 — Eclipse at Ibrahim's death</li>
+<li>Bukhari #1241 — Abu Bakr's address after Prophet's death</li>
+<li>Bukhari #1365 — Burial of the Prophet ﷺ</li>
+<li>Bukhari #1954 — Ramadan fasting made obligatory</li>
+<li>Bukhari #2617 — Poisoned sheep at Khaybar</li>
+<li>Bukhari #2731 — Treaty of Hudaybiyyah terms</li>
+<li>Bukhari #2977 — Battle of Badr details</li>
+<li>Bukhari #3045 — Raji' incident (Khubayb RA)</li>
+<li>Bukhari #3059 — Ta'if rejection and angel offer</li>
+<li>Bukhari #3906 — Lineage of the Prophet ﷺ</li>
+<li>Bukhari #4024 — Battle of Khandaq</li>
+<li>Bukhari #4066 — Battle of Uhud details</li>
+<li>Bukhari #4090 — Bi'r Ma'unah tragedy</li>
+<li>Bukhari #4121 — Banu Qurayza judgment</li>
+<li>Bukhari #4141 — Incident of Ifk in detail</li>
+<li>Bukhari #4210 — Battle of Khaybar</li>
+<li>Bukhari #4261 — Battle of Mu'tah (Ja'far RA)</li>
+<li>Bukhari #4280 — Conquest of Makkah</li>
+<li>Bukhari #4317 — Battle of Hunayn</li>
+<li>Bukhari #4418 — Battle of Tabuk</li>
+<li>Bukhari #4431 — Final illness and death</li>
+<li>Bukhari #4670 — Prayer over 'Abdullah ibn Ubayy</li>
+<li>Bukhari #5158 — Marriage to Khadijah RA</li>
+<li>Bukhari #7 — Heraclius investigates prophethood</li>
+<li>Muslim #406 — Prophet's character in prayer</li>
+<li>Muslim #531 — Final public address in mosque</li>
+<li>Muslim #1218 — Hajjat al-Wada' details</li>
+<li>Muslim #2408 — Ghadir Khumm declaration</li>
+<li>Muslim #2444 — Final moments with 'A'ishah</li>
+<li>Abu Dawud #4971 (Sahih) — Chest-opening miracle</li>
+<li>Abu Dawud (Sahih) — Adhan instituted</li>
+</ul>
+<h3>Classical Seerah Books</h3>
+<ul>
+<li>Ar-Raheeq Al-Makhtum (The Sealed Nectar) — Safi ur-Rahman al-Mubarakpuri — Award-winning biography</li>
+<li>Al-Bidayah wa'l-Nihayah — Ibn Kathir — Comprehensive Islamic history</li>
+<li>Al-Sirah Al-Nabawiyyah — Ibn Hisham (from Ibn Ishaq) — Earliest major Seerah work</li>
+<li>Zad al-Ma'ad — Ibn al-Qayyim al-Jawziyyah — Detailed prophetic biography</li>
+</ul>
+</div>
+</div>
+
+<script>
+const data = [
+  {y:"570 CE",p:"pre",c:"Birth & Lineage",e:"Born in Makkah, Monday 12 Rabi' al-Awwal (most agreed). Full lineage: Muhammad ibn 'Abdullah ibn 'Abd al-Muttalib ibn Hashim ibn 'Abd Manaf (Quraysh). Year of the Elephant — Abraha's army destroyed.",r:"Bukhari #3906; Sealed Nectar p.54"},
+  {y:"570 CE",p:"pre",c:"Personal — Father",e:"Father 'Abdullah ibn 'Abd al-Muttalib had died before the Prophet's birth during a trade trip to Yathrib (Madinah). The Prophet was born an orphan of his father.",r:"Sealed Nectar p.55; Ibn Kathir, Al-Bidayah"},
+  {y:"570 CE",p:"pre",c:"Personal — Mother",e:"Mother: Aminah bint Wahb of Banu Zuhra. Grandfather 'Abd al-Muttalib took immediate custody after birth.",r:"Sealed Nectar p.56"},
+  {y:"570 CE",p:"pre",c:"Nursing",e:"Initially nursed briefly by Thuwaybah (freed slave of Abu Lahab). Then entrusted to Halimah bint Abi Dhu'ayb al-Sa'diyyah of Banu Sa'd tribe for desert nursing — a noble Bedouin custom.",r:"Sealed Nectar p.57; Ibn Kathir"},
+  {y:"571–575 CE",p:"pre",c:"Childhood — Banu Sa'd",e:"Spent ~4–5 years with Halimah's family in the desert of Banu Sa'd. Remarkable blessing reported upon her household. Grew rapidly and spoke his first words. Returned to Makkah initially then went back.",r:"Sealed Nectar p.57–58"},
+  {y:"~575 CE",p:"pre",c:"Miracle — Chest Opening (1st)",e:"While with Halimah, two angels appeared, opened his chest, removed a clot, and purified his heart with snow. Halimah, frightened, returned him to Makkah. Alluded to in Qur'an: 'Did We not expand your chest for you?' (94:1)",r:"Muslim (Anas ibn Malik); Abu Dawud #4971 (Sahih); Surah Al-Inshirah 94:1–4"},
+  {y:"576 CE",p:"pre",c:"Personal — Mother Dies",e:"Mother Aminah bint Wahb died at Al-Abwa (between Makkah and Madinah) while returning from visiting her late husband's grave in Yathrib. The Prophet ﷺ was approximately 6 years old. His maid Umm Ayman (Barakah) brought him back to Makkah. Came under care of grandfather 'Abd al-Muttalib.",r:"Sealed Nectar p.63; Ibn Kathir"},
+  {y:"578 CE",p:"pre",c:"Personal — Grandfather Dies",e:"'Abd al-Muttalib ibn Hashim died aged approximately 82. The Prophet ﷺ was ~8 years old. Care and guardianship passed to uncle Abu Talib ibn 'Abd al-Muttalib.",r:"Sealed Nectar p.65"},
+  {y:"578–582 CE",p:"pre",c:"Childhood — With Abu Talib",e:"Raised lovingly by uncle Abu Talib. Worked as a shepherd — a profession shared by all the prophets. Abu Talib gave him full protection, affection, and preference over his own children. Very close bond.",r:"Sealed Nectar p.65"},
+  {y:"582 CE",p:"pre",c:"Travel — Syria (First)",e:"Traveled with Abu Talib on a trade caravan to Syria (Busra). The monk Bahira, seeing signs of prophethood (the seal between his shoulders, cloud shading him), advised Abu Talib to protect him from hostile forces.",r:"Sealed Nectar p.65–66; Ibn Kathir"},
+  {y:"590 CE",p:"pre",c:"Harb al-Fijar",e:"Participated (age ~20) in the Harb al-Fijar (Sacrilegious War) between Quraysh/Kinanah and Hawazin. His role: handing arrows to his uncles. Did not personally fight. The war lasted sporadically for years.",r:"Sealed Nectar p.67; Ibn Hisham"},
+  {y:"591 CE",p:"pre",c:"Hilf al-Fudul — Noble Alliance",e:"Participated in Hilf al-Fudul — a pact among Qurayshi clans to protect the oppressed, uphold justice, and return wrongfully seized property. Convened at 'Abdullah ibn Jud'an's house. The Prophet ﷺ later said: 'I would honor such an alliance even now in Islam.'",r:"Sealed Nectar p.68; Ibn Kathir"},
+  {y:"594–595 CE",p:"pre",c:"Trade — Khadijah's Caravan",e:"Worked as a merchant for Khadijah bint Khuwaylid, a wealthy Qurayshi widow. Traveled to Syria with her servant Maysarah. Exceptional honesty, profit, and noble conduct earned him her admiration. Maysarah reported miraculous signs to Khadijah.",r:"Sealed Nectar p.69; Bukhari #5158"},
+  {y:"595 CE",p:"pre",c:"Marriage — Khadijah RA",e:"Married Khadijah bint Khuwaylid RA. She was ~40 years old; he was ~25. She proposed via Nafisah bint Munabbih. Mahr (dowry): 20 young camels. This was his only marriage during her lifetime — 15 years of monogamy. She was the first to believe in him and his greatest support throughout the Makkan phase.",r:"Bukhari #5158; Sealed Nectar p.70–71"},
+  {y:"595–610 CE",p:"pre",c:"Children — With Khadijah RA",e:"All six children from Khadijah RA:\n• Al-Qasim — died in infancy (hence Kunya Abu'l-Qasim)\n• Zaynab RA — eldest daughter; married Abu'l-'As ibn al-Rabi'\n• Ruqayyah RA — married 'Uthman ibn 'Affan RA\n• Umm Kulthum RA — married 'Uthman RA after Ruqayyah's death\n• Fatimah al-Zahra RA — youngest daughter; only child to outlive him (by ~6 months); married 'Ali RA\n• 'Abdullah (also called al-Tayyib and al-Tahir) — died in infancy\nAll sons died young; Ibrahim (from Mariyah RA) also died in infancy.",r:"Sealed Nectar p.71; Ibn Kathir, Al-Bidayah"},
+  {y:"605 CE",p:"pre",c:"Black Stone — Ka'bah Rebuilt",e:"Age ~35. Quraysh rebuilt the Ka'bah after a flood damaged it. Dispute arose over who would have the honor of placing the Black Stone (Al-Hajar al-Aswad). The Prophet ﷺ was selected as judge. He placed the stone on a cloak, had each tribe's chief lift it together, then placed it himself with his own hands. This earned him universal respect as Al-Amin (the Trustworthy).",r:"Sealed Nectar p.73; Ibn Hisham"},
+  {y:"605–610 CE",p:"pre",c:"Spiritual Retreat — Cave Hira'",e:"Increasingly withdrew to Cave Hira' on Jabal al-Nur (Mountain of Light) near Makkah for tahannuth (worship and meditation). Khadijah RA would prepare provisions for him. This continued until the first revelation in the month of Ramadan.",r:"Bukhari #3; Sealed Nectar p.75"},
+
+  {y:"610 CE",p:"mak",c:"First Revelation — Iqra'",e:"Age 40. In Cave Hira', in Ramadan. Angel Jibreel AS appeared and commanded 'Iqra!' (Read/Recite). The Prophet ﷺ replied: 'I cannot read.' Jibreel embraced him three times, then revealed the first 5 verses of Surah Al-'Alaq. The Prophet ﷺ returned trembling to Khadijah RA. She comforted him, wrapped him, then took him to her cousin Waraqah ibn Nawfal (a learned Christian), who confirmed: 'This is the Namus (Angel) that was sent to Musa. Would that I were young when your people will drive you out!'",r:"Bukhari #3; Surah Al-'Alaq 96:1–5"},
+  {y:"610 CE",p:"mak",c:"First Believers",e:"In order:\n1. Khadijah RA — first person to embrace Islam (immediately)\n2. 'Ali ibn Abi Talib RA — first young male (~10 years old), cousin\n3. Zayd ibn Harithah RA — freed slave and adopted son\n4. Abu Bakr ibn Abi Quhafah RA — first free adult male; closest friend",r:"Sealed Nectar p.80; multiple ahadith in Bukhari & Muslim"},
+  {y:"610–613 CE",p:"mak",c:"Pause in Revelation (Fatrah)",e:"A period of pause in revelation (Fatrat al-Wahy) following the initial revelations. The Prophet ﷺ was grieved. Then Surah Al-Muddaththir (74:1–7) was revealed: 'O you wrapped in a garment, rise and warn!' — marking the beginning of his active mission.",r:"Bukhari (Fatrat al-Wahy); Surah Al-Muddaththir 74:1–7"},
+  {y:"611–613 CE",p:"mak",c:"Da'wah — Secret Phase",e:"Islam spread quietly among close trusted individuals. Early believers brought in by Abu Bakr RA:\n• 'Uthman ibn 'Affan RA\n• Talhah ibn 'Ubaydullah RA\n• Zubayr ibn al-'Awwam RA\n• Sa'd ibn Abi Waqqas RA\n• 'Abd al-Rahman ibn 'Awf RA\n• Abu 'Ubaydah ibn al-Jarrah RA (later called Amin al-Ummah)",r:"Sealed Nectar p.82–83"},
+  {y:"~613 CE",p:"mak",c:"Da'wah — Open Proclamation",e:"Commanded by revelation to proclaim openly (15:94) and warn his close kindred (26:214). Gathered Banu Hashim at Safa Hill — addressed all clans. Abu Lahab rejected violently ('Perish to you! Is it for this you gathered us?'). Surah Al-Masad revealed against him.",r:"Surah Al-Hijr 15:94; Surah Ash-Shu'ara' 26:214; Bukhari"},
+  {y:"613–615 CE",p:"mak",c:"Persecution — Phase 1",e:"Quraysh response: mockery, ridicule, calling him a poet/soothsayer/madman. Then physical persecution of weaker Muslims:\n• Bilal ibn Rabah RA (Abyssinian slave) — tortured by Umayyah ibn Khalaf (hot rock on chest in desert heat); freed by Abu Bakr RA\n• Sumayyah bint Khayyat RA — first martyr of Islam, killed by Abu Jahl with a spear\n• Yasir ibn 'Amir RA — second martyr of Islam, tortured to death\n• 'Ammar ibn Yasir RA — tortured but survived; first to build a mosque in his home\n• Khabbab ibn al-Aratt RA — tortured with burning coals",r:"Sealed Nectar p.88–93; Ibn Kathir"},
+  {y:"615 CE",p:"mak",c:"First Hijrah — Abyssinia",e:"First group emigration to Abyssinia (Ethiopia) — ~12 men and 4 women, including 'Uthman RA and Ruqayyah RA. King Negus (Al-Najashi/Ashama ibn Abjar) granted them full protection. Group returned after a false rumor reached them that Quraysh had accepted Islam.",r:"Sealed Nectar p.96–97; Ibn Hisham"},
+  {y:"616 CE",p:"mak",c:"Second Hijrah — Abyssinia",e:"Second and larger emigration: ~83 men and 18 women. Led by Ja'far ibn Abi Talib RA. Quraysh sent 'Amr ibn al-'As and 'Abdullah ibn Abi Rabi'ah with gifts to King Negus demanding extradition. Ja'far RA recited Surah Maryam before Negus. Negus wept until his beard was wet, declared: 'The difference between what Musa brought and this is no more than this line' and refused extradition. Later accepted Islam secretly.",r:"Sealed Nectar p.97–102; Ibn Hisham"},
+  {y:"615–616 CE",p:"mak",c:"Conversions — Hamzah & 'Umar RA",e:"Hamzah ibn 'Abd al-Muttalib RA accepted Islam after Abu Jahl physically abused the Prophet ﷺ — Hamzah struck Abu Jahl with his bow and declared his Islam. 'Umar ibn al-Khattab RA accepted Islam after going intending to kill the Prophet ﷺ, hearing Surah Ta-Ha recited in his sister Fatimah's house, and being overwhelmed. Both conversions greatly strengthened the Muslims.",r:"Sealed Nectar p.103–106; Ibn Hisham"},
+  {y:"616–619 CE",p:"mak",c:"Boycott — Banu Hashim",e:"Quraysh imposed a complete social and economic boycott on Banu Hashim and Banu 'Abd al-Muttalib. A written document was hung inside Ka'bah. Muslims and their supporters confined to Shi'b Abi Talib (a mountain pass). ~3 years of severe hardship — some ate leaves and boiled leather. The written document was reportedly found eaten by termites (only the name of Allah remained). Boycott lifted.",r:"Sealed Nectar p.109–113; Ibn Hisham"},
+  {y:"619 CE",p:"mak",c:"'Aam al-Huzn — Year of Grief",e:"Two greatest losses within weeks of each other:\n1. Khadijah bint Khuwaylid RA died after long illness, aged ~65. The Prophet ﷺ mourned her deeply throughout his life — slaughtered sheep and distributed to her friends years later.\n2. Abu Talib ibn 'Abd al-Muttalib (uncle and guardian) died. Despite repeated urging at his deathbed, he did not pronounce the Shahadah — Surah 28:56 revealed ('You do not guide whom you love, but Allah guides whom He wills').",r:"Bukhari (death of Khadijah); Surah Al-Qasas 28:56; Sealed Nectar p.116–118"},
+  {y:"619 CE",p:"mak",c:"Travel — Ta'if",e:"Traveled to Ta'if with Zayd ibn Harithah RA to seek support from the Thaqif tribe. Met with chiefs — all three brothers rejected and mocked him. Sent the city's youth to stone him from the city. The Prophet ﷺ bled from both feet. In the valley of Qarn al-Manzil, Jibreel AS appeared with the Angel of the Mountains — offered to crush Ta'if between its two mountains. The Prophet ﷺ refused: 'Perhaps Allah will bring from their progeny those who worship Him alone.'",r:"Sealed Nectar p.119–121; Bukhari #3059"},
+  {y:"619–620 CE",p:"mak",c:"Protection — Mut'im ibn 'Adi",e:"Returned to Makkah under the formal tribal protection (jiwar) of Mut'im ibn 'Adi, an honorable Qurayshi polytheist. He and his armed sons stood at the Ka'bah and announced their protection publicly. The Prophet ﷺ later said at Badr: 'If Mut'im ibn 'Adi were alive and interceded for these prisoners, I would have released them all for his sake.'",r:"Sealed Nectar p.121–122; Ibn Hisham; Bukhari (Badr chapter)"},
+  {y:"619–620 CE",p:"mak",c:"Marriage — Sawdah RA",e:"Married Sawdah bint Zam'ah RA — a Muslim widow whose husband Sakran ibn 'Amr had died after returning from the first Hijrah to Abyssinia. She was older. Purpose: care for his household and daughters. She later voluntarily gifted her conjugal night to 'A'ishah RA out of love for the Prophet ﷺ.",r:"Sealed Nectar p.122; Ibn Kathir"},
+  {y:"620 CE",p:"mak",c:"Miracle — Isra' (Night Journey)",e:"From Masjid al-Haram to Masjid al-Aqsa (Jerusalem) on Al-Buraq (a white beast) with Jibreel AS in a single night. Tied Al-Buraq to the ring at the entrance of Al-Aqsa. Led all the prophets in prayer as their imam. Offered milk and wine — chose milk. Jibreel AS said: 'You have chosen the fitra (natural disposition).'",r:"Surah Al-Isra' 17:1; Bukhari #349"},
+  {y:"620 CE",p:"mak",c:"Miracle — Mi'raj (Ascension)",e:"Ascended through the seven heavens from Al-Aqsa:\n• 1st heaven: Adam AS\n• 2nd heaven: Yahya AS and 'Isa AS\n• 3rd heaven: Yusuf AS\n• 4th heaven: Idris AS\n• 5th heaven: Harun AS\n• 6th heaven: Musa AS (wept saying more of Prophet's ﷺ ummah would enter paradise than his own)\n• 7th heaven: Ibrahim AS (leaning against Bayt al-Ma'mur)\nReached Sidrat al-Muntaha (Lote Tree of the Utmost Boundary). Received command of 50 daily prayers — reduced through Musa's AS advice to 5 (with reward of 50). Saw Jannah and Jahannam.",r:"Bukhari #349; Surah An-Najm 53:1–18"},
+  {y:"621 CE",p:"mak",c:"Bay'at al-'Aqabah 1 (First Pledge)",e:"12 men from Yathrib (Madinah) — from Aus and Khazraj tribes — came during Hajj season and pledged to the Prophet ﷺ at 'Aqabah:\nNot to associate partners with Allah; not to steal; not to commit adultery; not to kill children; not to slander; not to disobey in what is right. (These are the same terms as the later pledge of the women — Bay'at al-Nisa'.)\nMus'ab ibn 'Umayr RA sent to Madinah as teacher and representative.",r:"Sealed Nectar p.132; Ibn Hisham"},
+  {y:"622 CE",p:"mak",c:"Bay'at al-'Aqabah 2 (Second Pledge)",e:"73 men and 2 women from Madinah came secretly at night to Mina during Hajj. Pledged to protect the Prophet ﷺ as they protect their own wives and children — a pledge of war and full protection. Al-'Abbas ibn 'Abd al-Muttalib (then non-Muslim) attended and tested the sincerity of the Madinans. 12 Nuqaba' (representatives/chiefs) appointed. This opened the door to the Hijrah.",r:"Sealed Nectar p.133–135; Ibn Hisham"},
+  {y:"622 CE",p:"mak",c:"Companions Emigrate to Madinah",e:"Muslims began emigrating to Madinah in small groups. Abu Salamah RA emigrated first. 'Umar ibn al-Khattab RA emigrated openly and publicly challenged anyone to stop him. Most emigrated secretly by night.",r:"Sealed Nectar p.138"},
+  {y:"622 CE",p:"mak",c:"Quraysh Plot to Kill — Dar al-Nadwa",e:"Quraysh convened an emergency council at Dar al-Nadwa. Decided to send one sword-bearer from each tribe to kill the Prophet ﷺ simultaneously — ensuring Banu Hashim could not seek blood revenge from any single tribe. Jibreel AS warned the Prophet ﷺ. 'Ali RA slept in his bed. The Prophet ﷺ departed reciting Surah Ya-Sin 36:9, scattering dust on the plotters — they did not see him.",r:"Sealed Nectar p.138–139; Surah Al-Anfal 8:30"},
+  {y:"622 CE",p:"mak",c:"Hijrah — Cave Thawr (3 Days)",e:"The Prophet ﷺ and Abu Bakr RA hid in Cave Thawr for 3 days. Abu Bakr's son 'Abdullah reported Quraysh intelligence by day; his daughter Asma' RA (Dhat al-Nitaqayn — She of Two Waistbands) brought food by night tearing her waistband in two. The freed slave 'Amir ibn Fuhayrah RA grazed sheep near the cave to cover footprints. Quraysh searchers reached the very entrance — but a spider's web appeared over the entrance and pigeons nested at the mouth.",r:"Bukhari; Surah At-Tawbah 9:40"},
+  {y:"622 CE",p:"mak",c:"Hijrah — Journey to Madinah",e:"Departed Cave Thawr. Guide: 'Abdullah ibn Urayqit (non-Muslim — hired for expertise). Took an unconventional southern coastal route. Suraqa ibn Malik chased them for the reward of 100 camels — his horse's legs sank into the earth twice. He accepted the Prophet's pardon and promise that he would wear the Persian royal bracelets (Kisra's) — fulfilled in 'Umar's caliphate when Persia was conquered.",r:"Sealed Nectar p.141–143; Bukhari"},
+
+  {y:"622 CE (1 AH)",p:"med",c:"Arrival — Quba'",e:"Arrived at Quba' (outskirts of Madinah) Monday 8 Rabi' al-Awwal. Stayed ~4 days with Banu 'Amr ibn 'Awf. Founded Masjid Quba' — the first mosque purposely built in Islam. The Qur'an praises it: 'A mosque founded on piety from the first day is more worthy for you to stand in' (9:108).",r:"Bukhari; Surah At-Tawbah 9:108; Sealed Nectar p.145"},
+  {y:"622 CE (1 AH)",p:"med",c:"Entry into Madinah",e:"Entered Madinah Friday 12 Rabi' al-Awwal. Entire city came out to welcome him singing 'Tala'a al-badr 'alayna.' Performed the first Jumu'ah prayer in Islam at the valley of Banu Salim ibn 'Awf. Let his camel Qaswa choose where to stop — she knelt at land belonging to two orphan boys of Banu Najjar.",r:"Bukhari; Sealed Nectar p.146–147"},
+  {y:"622 CE (1 AH)",p:"med",c:"Masjid al-Nabawi Built",e:"Land purchased from the orphan boys (compensated). Masjid al-Nabawi constructed — the Prophet ﷺ carried bricks alongside companions. Original mosque was open-air with date-palm trunk pillars. Adjacent rooms (hujurat) built for his wives. Initial qiblah toward Jerusalem.",r:"Bukhari; Sealed Nectar p.147–148"},
+  {y:"622 CE (1 AH)",p:"med",c:"Marriage — 'A'ishah RA (Consummation)",e:"Consummation of marriage to 'A'ishah bint Abi Bakr RA (betrothal had been in Makkah, age 6; consummation ~age 9 per her own narration). She was the only virgin he married. She narrated the highest number of hadith of any wife (~2,210 hadith). Most knowledgeable of the Mothers of the Believers.",r:"Bukhari #3896; Bukhari #5158"},
+  {y:"622 CE (1 AH)",p:"med",c:"Al-Mu'akhat — Brotherhood Pact",e:"Established brotherhood (mu'akhat) between Muhajirun (Makkan emigrants) and Ansar (Madinan helpers). Each Ansari took a Muhajir as a brother — sharing homes, food, and wealth. Example: Sa'd ibn al-Rabi' al-Ansari offered 'Abd al-Rahman ibn 'Awf RA half his wealth and one of his two wives (who he would divorce) — 'Abd al-Rahman declined and asked only to be shown the market.",r:"Bukhari; Sealed Nectar p.149–150"},
+  {y:"622 CE (1 AH)",p:"med",c:"Sahifat al-Madinah — Constitution",e:"Drafted the Constitution of Madinah (Wathiqat al-Madinah) — first written constitution in history. Established rights and duties of Muslims (Muhajirun and Ansar), Jewish tribes (Banu Qaynuqa', Banu Nadir, Banu Qurayza), and pagan Arab clans. Declared Madinah a single unified political community (ummah wahidah). Internal disputes to be referred to the Prophet ﷺ.",r:"Ibn Hisham; Sealed Nectar p.151–152"},
+  {y:"623 CE (1–2 AH)",p:"med",c:"Adhan Instituted",e:"'Abdullah ibn Zayd ibn 'Abd Rabbih RA saw the words of the adhan in a dream and informed the Prophet ﷺ. 'Umar ibn al-Khattab RA independently had the same dream. The Prophet ﷺ confirmed it. Bilal ibn Rabah RA appointed as first mu'adhdhin (caller to prayer) for his powerful, melodious voice.",r:"Abu Dawud (Sahih); Sealed Nectar p.153–154"},
+  {y:"623 CE (2 AH)",p:"med",c:"Islamic Ruling — Qiblah Changed",e:"Qiblah changed from Masjid al-Aqsa (Jerusalem) to Masjid al-Haram (Makkah) by divine command. Revealed mid-prayer — the congregation in Masjid Banu Salamah rotated mid-prayer. This mosque became known as Masjid al-Qiblatayn (Mosque of the Two Qiblahs).",r:"Surah Al-Baqarah 2:144; Bukhari #403"},
+  {y:"623 CE (2 AH)",p:"med",c:"Islamic Ruling — Ramadan Fasting Ordained",e:"Fasting in Ramadan made obligatory — 'O you who believe! Fasting has been prescribed for you as it was prescribed for those before you...' (2:183). Zakat al-Fitr and 'Eid al-Fitr prayer also established.",r:"Surah Al-Baqarah 2:183–185; Bukhari #1954"},
+  {y:"623 CE (2 AH)",p:"med",c:"Islamic Ruling — Zakat",e:"Zakat (obligatory almsgiving/purification tax) formally established as one of the five pillars of Islam, with specified categories of recipients and rates.",r:"Surah At-Tawbah 9:60; Sunan Abu Dawud (Sahih)"},
+  {y:"624 CE (2 AH)",p:"med",c:"Battle — Badr (Major)",e:"17 Ramadan 2 AH. 313 Muslims (70 camels, 2 horses, 8 swords — no proper armor) vs ~1,000 Quraysh (fully equipped). Prophet ﷺ prayed through the night. Allah sent 1,000 angels. Key events:\n• Abu Jahl killed (by Mu'adh and Mu'awwidh, sons of 'Afra')\n• 'Utbah ibn Rabi'ah, Shaybah ibn Rabi'ah, al-Walid ibn 'Utbah killed\n• 70 Quraysh killed; 70 taken prisoner\n• 14 Muslims martyred\nPrisoners ransomed — literate ones who could teach 10 Muslim children freed without ransom.",r:"Bukhari #2977; Surah Al-Anfal 8:9,17; Surah Al-Imran 3:123"},
+  {y:"624 CE (2 AH)",p:"med",c:"Expulsion — Banu Qaynuqa'",e:"Banu Qaynuqa' (Jewish goldsmiths) violated the Constitution of Madinah — a Muslim woman's dress was undone in their market; a Muslim man killed in retaliation. Besieged for 15 days. Surrendered unconditionally. Expelled from Madinah with their wealth (but not their weapons/armor). 'Abdullah ibn Ubayy (chief hypocrite) interceded for them.",r:"Sealed Nectar p.164; Ibn Hisham"},
+  {y:"624 CE (2 AH)",p:"med",c:"Marriage — Hafsah RA",e:"Married Hafsah bint 'Umar ibn al-Khattab RA — daughter of 'Umar RA, widow of Khunays ibn Hudhayfah al-Sahmi RA who died from wounds after Badr. She became the guardian of the first compiled Qur'anic manuscript (mushaf) after Abu Bakr RA's caliphate.",r:"Sealed Nectar; Ibn Kathir"},
+  {y:"625 CE (3 AH)",p:"med",c:"Battle — Uhud",e:"15 Shawwal 3 AH. ~700 Muslims vs 3,000 Quraysh (plus 700 armored soldiers; led by Abu Sufyan). Initial Muslim advantage. 50 archers placed by the Prophet ﷺ on 'Aynayn hill with strict orders NOT to move. After Quraysh began fleeing, archers descended for spoils. Khalid ibn al-Walid (then non-Muslim general) flanked through the gap. Hamzah RA martyred. Prophet ﷺ himself was wounded — tooth broken, face cut, fell into a ditch. Rumor spread of his death. Muslims dispersed. 70 martyrs total.",r:"Bukhari #4066; Surah Al-Imran 3:140–144"},
+  {y:"625 CE (3 AH)",p:"med",c:"Martyr — Hamzah ibn 'Abd al-Muttalib RA",e:"Hamzah RA ('Asad Allah wa Asad Rasulihi' — Lion of Allah and His Messenger) martyred at Uhud by the javelin-thrower Wahshi ibn Harb (hired by Hind bint 'Utbah). His body was mutilated by Hind (who chewed his liver). The Prophet ﷺ was so grieved he said 70 funeral prayers over him. Wahshi later accepted Islam; the Prophet ﷺ asked him never to come before him again (too painful to see).",r:"Bukhari #4072; Sealed Nectar"},
+  {y:"625 CE (3 AH)",p:"med",c:"Marriage — Zaynab bint Khuzaymah RA",e:"Married Zaynab bint Khuzaymah RA, known as Umm al-Masakin (Mother of the Poor) for her extraordinary generosity. Widow of 'Ubaydah ibn al-Harith RA who died at Badr. She passed away approximately 2–3 months after the marriage.",r:"Sealed Nectar; Ibn Kathir"},
+  {y:"625 CE (3 AH)",p:"med",c:"Bi'r Ma'unah — Massacre",e:"70 Qurra' (memorizers and teachers of Qur'an) sent to the Najd tribes at the request of 'Amir ibn al-Tufayl (who had promised safe passage). Treacherously ambushed and killed at the well of Bi'r Ma'unah. Only Ka'b ibn Zayd RA survived. The Prophet ﷺ made qunut (supplication against perpetrators) in prayer for 30 consecutive days.",r:"Bukhari #4090; Sealed Nectar"},
+  {y:"625 CE (3 AH)",p:"med",c:"Raji' Incident — Betrayal",e:"10 companions sent with a group from 'Adal and al-Qarah who claimed to want Islamic instruction. Betrayed to Quraysh at Raji'. Khubayb ibn 'Adi RA and Zayd ibn al-Dathinnah RA sold and taken to Makkah for execution. Khubayb RA requested 2 rak'at before execution — first Muslim to establish this sunnah. Killed on the cross.",r:"Bukhari #3045; Sealed Nectar"},
+  {y:"625 CE (3 AH)",p:"med",c:"Expulsion — Banu Nadir",e:"Banu Nadir (Jewish tribe) plotted to drop a millstone on the Prophet ﷺ from a rooftop while he sat with them to discuss compensation for two killed men. Jibreel AS warned him. He quietly departed. Besieged for 15 days. Expelled to Khaybar and Syria with their families and portable wealth (but surrendered their weapons). Their abandoned property distributed among the Muhajirun.",r:"Surah Al-Hashr 59:2–4; Sealed Nectar p.174"},
+  {y:"626 CE (4 AH)",p:"med",c:"Islamic Ruling — Alcohol Fully Prohibited",e:"Final prohibition of alcohol (khamr) revealed — preceded by gradual stages (Q.2:219 — harm greater than benefit; Q.4:43 — do not approach prayer intoxicated; Q.5:90 — absolute prohibition). Upon this final revelation, all containers of wine in Madinah were immediately smashed — wine ran through the streets.",r:"Surah Al-Ma'idah 5:90–91; Bukhari"},
+  {y:"626 CE (4 AH)",p:"med",c:"Marriage — Umm Salamah RA",e:"Married Umm Salamah (Hind bint Abi Umayyah al-Makhzumiyah RA) — widow of Abu Salamah RA who died from Uhud wounds. She had children and was hesitant due to her age and jealous nature. She said: 'I am a jealous woman.' He said: 'I will pray to Allah to remove your jealousy.' She was among the most knowledgeable of his wives and narrated many hadith.",r:"Muslim; Sealed Nectar"},
+  {y:"627 CE (5 AH)",p:"med",c:"Battle — Khandaq (Trench/Confederates)",e:"Shawwal 5 AH. Confederation of ~10,000 (Quraysh, Ghatafan, Banu Sulaym, others) marched on Madinah. Salman al-Farisi RA advised digging a trench (khandaq) along the exposed northern perimeter — a Persian military tactic unknown to Arabs. ~3,000 Muslims dug for ~6 days. Siege lasted ~27 days. 'Amr ibn 'Abd Wudd (who boasted of the strength of 1,000 warriors) crossed the trench; killed by 'Ali RA in single combat. Nu'aym ibn Mas'ud RA sowed deep discord between the coalition and Banu Qurayza. Divine cold wind and fear sent by Allah dispersed the coalition.",r:"Bukhari #4024; Surah Al-Ahzab 33:9–10"},
+  {y:"627 CE (5 AH)",p:"med",c:"Banu Qurayza — Judgment",e:"Banu Qurayza had violated their treaty during the Khandaq siege by siding with the confederates. Besieged for 25 days, they surrendered unconditionally. They themselves requested Sa'd ibn Mu'adh RA (their former ally, now dying from a Khandaq wound) as their judge. He ruled by the Torah law for their treachery: adult male fighters executed; women and children taken captive. Sa'd RA died from his wound shortly after, having fulfilled his purpose.",r:"Bukhari #4121; Sealed Nectar p.188–194"},
+  {y:"627 CE (5 AH)",p:"med",c:"Incident of Ifk — False Accusation",e:"'A'ishah RA was left behind from a caravan by accident; brought back to Madinah alone by Safwan ibn al-Mu'attal RA (who was completely innocent). Chief hypocrite 'Abdullah ibn Ubayy spread slander. The Prophet ﷺ was greatly distressed for ~1 month. 'Ali RA advised the Prophet ﷺ to divorce her; 'A'ishah RA went to her parents' home. Her innocence was finally revealed directly by Qur'anic revelation — Surah An-Nur 24:11–26. Those who spread the slander received 80 lashes.",r:"Bukhari #4141; Surah An-Nur 24:11–26"},
+  {y:"627 CE (5 AH)",p:"med",c:"Marriage — Zaynab bint Jahsh RA",e:"The Prophet ﷺ married Zaynab bint Jahsh RA — his own cousin, previously married to his freed slave and formerly 'adopted son' Zayd ibn Harithah RA. After Zayd divorced her, Allah commanded this marriage to definitively end the pre-Islamic custom of treating adopted sons as biological sons (with all associated marital restrictions).",r:"Surah Al-Ahzab 33:37–40; Bukhari"},
+  {y:"628 CE (6 AH)",p:"med",c:"Marriage — Juwayriyyah RA",e:"Married Juwayriyyah bint al-Harith RA, daughter of the chief of Banu al-Mustaliq (captured in the Expedition of Banu al-Mustaliq). Her ransom was arranged and she became his wife. As a result, all companions released the captives of Banu Mustaliq saying: 'We cannot keep the Prophet's ﷺ in-laws as slaves.' ~100 families freed.",r:"Abu Dawud (Sahih); Ibn Kathir"},
+  {y:"628 CE (6 AH)",p:"med",c:"Treaty — Hudaybiyyah",e:"Dhul-Qa'dah 6 AH. ~1,400 Muslims set out for 'Umrah in ihram — no weapons (except travelers' swords). Stopped at Hudaybiyyah. Camel Qaswa knelt and refused to move. 'Uthman RA sent to Makkah as envoy. Rumor of his death — Bay'at al-Ridwan (Pledge of the Tree): all companions pledged to fight to the death under a tree. Treaty signed on seemingly unfavorable terms: 10-year truce; Muslims to return this year; 'Umrah next year; anyone fleeing Makkah to Muslims to be returned; not vice versa. 'Umar RA questioned the treaty. Surah Al-Fath revealed declaring it a clear victory.",r:"Bukhari #2731; Surah Al-Fath 48:1–3"},
+  {y:"628 CE (6 AH)",p:"med",c:"Marriage — Umm Habibah RA",e:"Married Ramla bint Abi Sufyan RA — daughter of Abu Sufyan (then the chief enemy of Islam). She had emigrated to Abyssinia; her husband there apostatized and died. King Najashi officiated the nikah on behalf of the Prophet ﷺ and provided the mahr of 4,000 dirhams himself, also paying for her travel.",r:"Abu Dawud (Sahih); Ibn Kathir"},
+  {y:"628 CE (7 AH)",p:"med",c:"Letters to Kings",e:"Sent emissaries with sealed letters inviting rulers to Islam:\n• Heraclius (Byzantine Emperor) — asked intelligent questions about the Prophet's character; acknowledged signs of prophethood privately\n• Khosrow II Parviz (Sasanian/Persian Emperor) — tore the letter; the Prophet ﷺ said 'May Allah tear his kingdom as he tore my letter' — fulfilled within years\n• Al-Najashi (Abyssinia) — responded positively; had already accepted Islam\n• Muqawqis (Ruler of Egypt) — respected the letter; sent gifts including Mariyah al-Qibtiyyah RA\n• Others including rulers of Bahrain, Oman, Yemen",r:"Bukhari #7; Sealed Nectar p.205–215"},
+  {y:"628 CE (7 AH)",p:"med",c:"Battle — Khaybar",e:"Muharram 7 AH. Assault on the walled fortress-city of Khaybar, ~150 km north of Madinah — stronghold of Banu Nadir and other hostile Jewish tribes. Seven forts assaulted. The Prophet ﷺ gave the banner to 'Ali RA (whose eyes he healed with his blessed saliva): 'A man who loves Allah and His Messenger and whom Allah and His Messenger love.' 'Ali RA defeated the warrior Marhab in single combat. Khaybar surrendered. Land managed by remaining inhabitants who gave half the yield annually.",r:"Bukhari #4210; Sealed Nectar p.218–225"},
+  {y:"628 CE (7 AH)",p:"med",c:"Marriage — Safiyyah RA",e:"Married Safiyyah bint Huyayy ibn Akhtab RA — daughter of the chief of Banu Nadir, captured at Khaybar. Her mahr was her emancipation (freedom). She was of noble lineage (descended from Harun AS). She later repelled taunts about her Jewish origin with dignity: 'My father is Harun and my uncle is Musa.'",r:"Bukhari; Ibn Kathir"},
+  {y:"628 CE (7 AH)",p:"med",c:"Attempted Poisoning — Khaybar",e:"A Jewish woman, Zaynab bint al-Harith, poisoned a roasted sheep and offered it to the Prophet ﷺ. He took one bite then immediately spat it out — the meat informed him it was poisoned (or Jibreel AS informed him). His companion Bishr ibn al-Bara' RA who ate died. The woman was brought before him. The Prophet ﷺ reportedly forgave her initially; executed after Bishr's death (narrations differ). The Prophet ﷺ said during his final illness that he still felt the effects of that bite.",r:"Bukhari #2617; Abu Dawud (Sahih)"},
+  {y:"629 CE (7 AH)",p:"med",c:"'Umrah al-Qada' (Compensatory 'Umrah)",e:"Performed 'Umrah as per Hudaybiyyah treaty terms. ~2,000 Muslims entered Makkah for exactly 3 days. Quraysh evacuated to the hills temporarily. Bilal RA gave adhan from atop the Ka'bah. The Prophet ﷺ performed tawaf on his camel, with Ibn Rawahah RA leading ahead reciting: 'Make way, disbelievers — the Messenger of Allah comes!'",r:"Bukhari; Sealed Nectar p.231"},
+  {y:"629 CE (7 AH)",p:"med",c:"Marriage — Maymunah RA",e:"Married Maymunah bint al-Harith al-Hilaliyyah RA — last of his marriages. Aunt of Khalid ibn al-Walid RA and Ibn 'Abbas RA. A widow of high character who offered herself to the Prophet ﷺ. Qur'an (33:50) permitted him to accept such an offer. Known for her piety and knowledge.",r:"Surah Al-Ahzab 33:50; Sealed Nectar"},
+  {y:"629 CE (8 AH)",p:"med",c:"Battle — Mu'tah",e:"Jumada al-Ula 8 AH. First Muslim engagement with Byzantine forces (in present-day Jordan). 3,000 Muslims vs 100,000–200,000 Byzantine and Arab Christian forces. Three commanders appointed in order:\n1. Zayd ibn Harithah RA — martyred\n2. Ja'far ibn Abi Talib RA — right arm cut, then left arm cut while holding the banner with his chest, then martyred; given two wings in paradise (called Ja'far al-Tayyar — the Flying One)\n3. 'Abdullah ibn Rawahah RA — martyred\nStandard then taken by Khalid ibn al-Walid RA who conducted a masterful tactical withdrawal saving the army. The Prophet ﷺ narrated their deaths from Madinah in real time as if watching.",r:"Bukhari #4261; Sealed Nectar p.241–245"},
+  {y:"629 CE (8 AH)",p:"med",c:"Conversions — Khalid & 'Amr RA",e:"Khalid ibn al-Walid RA and 'Amr ibn al-'As RA accepted Islam in Safar 8 AH — the foremost military general and the greatest diplomat of the Arabs, respectively, both joining the Muslim ranks.",r:"Sealed Nectar p.245; Ibn Kathir"},
+  {y:"630 CE (8 AH)",p:"med",c:"Conquest — Fat'h Makkah",e:"20 Ramadan 8 AH. Quraysh violated Hudaybiyyah by assisting Banu Bakr against Banu Khuza'ah (Muslim treaty allies). The Prophet ﷺ mobilized 10,000 Muslims — largest Muslim army ever assembled. Abu Sufyan ibn Harb RA came to Madinah and accepted Islam just before the march. General amnesty declared: 'Today is a day of mercy.' Makkah entered peacefully in 4 columns with almost no resistance. The Prophet ﷺ entered on his camel with his head bowed in gratitude. Bilal RA gave adhan from atop the Ka'bah. 360 idols destroyed. Only a few individuals who had committed specific crimes were not initially pardoned (some later pardoned too).",r:"Bukhari #4280; Surah An-Nasr 110:1–3; Surah Al-Fath 48:27"},
+  {y:"630 CE (8 AH)",p:"med",c:"Battle — Hunayn",e:"Shawwal 8 AH. 12,000 Muslims (largest Muslim army) vs Hawazin and Thaqif in the valley of Hunayn. Muslims ambushed in a narrow valley — initial shock and near-rout. The Prophet ﷺ stood firm on his white mule calling out: 'I am the Prophet, no lie! I am the son of 'Abd al-Muttalib!' Abu Sufyan RA said: 'Only truth can help today.' Abu Bakr, 'Ali, 'Abbas RA rallied the troops. Angels descended. Complete victory — 6,000 prisoners, vast booty. Large gifts given to new Muslims (Tulaqaa').",r:"Bukhari #4317; Surah At-Tawbah 9:25–26"},
+  {y:"630 CE (8 AH)",p:"med",c:"Siege — Ta'if",e:"After Hunayn, besieged the fortified city of Ta'if (stronghold of Thaqif) for ~40 days using catapults and siege equipment. No breakthrough achieved. Withdrew — Ta'if later voluntarily accepted Islam in 630–631 CE.",r:"Sealed Nectar p.259–261"},
+  {y:"630 CE (9 AH)",p:"med",c:"Battle — Tabuk",e:"Rajab 9 AH. 30,000 Muslims marched north toward Byzantine territory in extreme summer heat — called Jaysh al-'Usrah (Army of Hardship). Byzantine forces withdrew without engagement. Frontier kingdoms submitted peacefully (Tabuk, Ayla, Jarba', Adhruh — treaties signed). Returned to Madinah after ~20 days at Tabuk. Hypocrites who stayed behind without excuse were exposed. Ka'b ibn Malik RA and two others (sincere Muslims who genuinely lagged) boycotted by companions for 50 days until Allah revealed their forgiveness (9:118).",r:"Surah At-Tawbah 9:38–42, 9:117–118; Bukhari #4418; Sealed Nectar p.263–275"},
+  {y:"630 CE (9 AH)",p:"med",c:"'Aam al-Wufud — Year of Delegations",e:"Delegations from across Arabia poured into Madinah accepting Islam:\n• Banu Tamim (with poets and orators)\n• Banu 'Amir ibn Sa'sa'ah\n• Thaqif of Ta'if (finally accepting Islam)\n• Tribes of Yemen and Himyar\n• Banu Hanifah — included Musaylamah ibn Habib (who later apostatized and claimed prophethood — the false prophet Musaylamah al-Kadhdhab)\nArabia was largely united under Islam.",r:"Sealed Nectar p.277–290; Ibn Hisham"},
+  {y:"630 CE (9 AH)",p:"med",c:"Islamic Ruling — Bara'ah Declaration",e:"Surah At-Tawbah (Bara'ah) revealed: complete disassociation from polytheists; Masjid al-Haram closed to polytheists after Dhul-Hijjah; those who don't accept Islam to pay jizya (protection tax) under Islamic governance. Abu Bakr RA led the first Islamic Hajj (9 AH). 'Ali RA publicly announced the Bara'ah at Mina.",r:"Surah At-Tawbah 9:1–5, 9:29; Bukhari"},
+  {y:"630 CE (9 AH)",p:"med",c:"Death — Ibrahim (Son)",e:"Ibrahim — son of the Prophet ﷺ and Mariyah al-Qibtiyyah RA (gifted by the Muqawqis of Egypt) — died in infancy, approximately 16–18 months old. The Prophet ﷺ wept at his death: 'The eye sheds tears and the heart is grieved, and we will not say except what pleases our Lord. And indeed, O Ibrahim, we are grieved by your parting.' A solar eclipse occurred that day; people attributed it to the child's death. The Prophet ﷺ addressed them: 'The sun and moon are two signs of Allah. They do not eclipse for the birth or death of anyone.'",r:"Bukhari #1060; Sealed Nectar"},
+  {y:"630 CE (9 AH)",p:"med",c:"Death — 'Abdullah ibn Ubayy (Hypocrite Chief)",e:"Death of 'Abdullah ibn Ubayy ibn Salul — the chief of the Munafiqun (hypocrites) who had caused immense harm to Muslims. His son ('Abdullah RA, a sincere Muslim) asked the Prophet ﷺ to give his father's body his shirt as a shroud and to pray over him. The Prophet ﷺ did so. Surah At-Tawbah 9:84 then revealed prohibiting funeral prayer for hypocrites henceforth.",r:"Bukhari #4670; Surah At-Tawbah 9:84"},
+
+  {y:"632 CE (10 AH)",p:"fin",c:"Hajjat al-Wada' — Farewell Pilgrimage",e:"The only Hajj performed by the Prophet ﷺ. ~90,000–124,000 companions accompanied him. Performed complete rites of Hajj — Tawaf, Sa'i, standing at 'Arafah, sacrifice, shaving. The Farewell Sermon (Khutbat al-Wada') delivered at 'Arafah and Mina:\n• 'Your blood and property are sacred to one another'\n• 'No Arab has superiority over a non-Arab except by taqwa'\n• 'Fear Allah regarding women and treat them kindly'\n• 'I have left among you what if you hold to it you will never go astray: the Book of Allah'\n• 'Have I conveyed? O Allah, bear witness!' — companions replied: 'Yes!'",r:"Muslim #1218; Bukhari; Surah Al-Ma'idah 5:3"},
+  {y:"632 CE (10 AH)",p:"fin",c:"Islamic Ruling — Religion Completed",e:"At 'Arafah during the Farewell Pilgrimage, the final verse completing the religion was revealed: 'This day I have perfected your religion for you, completed My favor upon you, and chosen Islam as your religion.' (Al-Ma'idah 5:3). Abu Bakr RA and 'Umar RA both wept — understanding that completion of the message implied the approaching end of the Messenger's life.",r:"Surah Al-Ma'idah 5:3; Bukhari"},
+  {y:"632 CE (10 AH)",p:"fin",c:"Ghadir Khumm",e:"On the return journey from Hajj, at the pond of Ghadir Khumm (between Makkah and Madinah), the Prophet ﷺ stopped and gave a public address to the entire assembled multitude. He held 'Ali ibn Abi Talib's RA hand and declared: 'Whoever takes me as his mawla (master/friend/protector), then 'Ali is his mawla.' He then prayed: 'O Allah, love those who love him and be an enemy of those who are enemies to him.'",r:"Muslim #2408; Musnad Ahmad (authenticated chains); Sealed Nectar"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Army of Usamah — Final Expedition Ordered",e:"Ordered a military expedition under Usamah ibn Zayd RA (age ~18–20, son of the martyr of Mu'tah) toward Byzantine territory. Some companions questioned his youth as commander — the Prophet ﷺ rebuked them strongly. The army camped at Jurf outside Madinah. The Prophet's ﷺ illness began before they could march. After his death, Abu Bakr RA insisted on dispatching Usamah's army immediately, honoring the Prophet's order.",r:"Bukhari; Sealed Nectar p.299"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Final Illness Begins — Safar 11 AH",e:"The Prophet ﷺ began feeling unwell after visiting the Baqi' cemetery at night and praying for its inhabitants. A severe headache and high fever developed — he bandaged his head due to the pain. Made rounds visiting the sick in Madinah, giving them comfort. Illness steadily intensified over the following weeks.",r:"Bukhari #4431; Sealed Nectar p.300"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Final Days — In 'A'ishah's Room",e:"With the permission of all his wives (who agreed), spent his final days in 'A'ishah's RA hujrah (room). Visited the mosque weakly, supported by 'Ali RA and Al-'Abbas RA. Instructed Abu Bakr RA to lead prayers in his place: 'Tell Abu Bakr to lead the people in prayer.' (When 'Umar RA led once in Abu Bakr's absence, the Prophet ﷺ emerged and changed it — insisting on Abu Bakr.).",r:"Bukhari #4431; Muslim #531"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Last Public Appearance",e:"On his last Friday or shortly before, felt slightly better. Appeared at the mosque during Abu Bakr's prayer — companions' hearts melted with joy. He gave a final brief address warning against making graves into places of worship (Surah 9:31). Asked forgiveness if he had struck anyone or taken anything wrongfully. This was his last public address in the mosque.",r:"Bukhari #4431; Muslim #531"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Final Moments — 12 Rabi' al-Awwal 11 AH",e:"Monday morning, 12 Rabi' al-Awwal. Abu Bakr RA was leading Fajr prayer. The Prophet ﷺ lifted the curtain of 'A'ishah's room — companions saw his blessed face and their hearts melted. He smiled, gestured Abu Bakr RA to continue, and let the curtain fall. During the morning, he repeatedly said: 'Al-Rafiq al-A'la' (the Highest Companion). 'A'ishah RA heard him say: 'O Allah, with the Highest Companion.' He passed away with his head resting in 'A'ishah's RA lap, during the Duha (late morning). He was 63 years old.",r:"Bukhari #4431; Muslim #2444"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Companions' Reaction to Death",e:"'Umar ibn al-Khattab RA initially refused to believe he had died — stood with drawn sword threatening anyone who said so. Abu Bakr al-Siddiq RA entered, kissed the Prophet's ﷺ forehead and said: 'O my father! O my dear friend! May Allah not combine two deaths upon you. As for the death which Allah had decreed — you have tasted it.' He then came out and said: 'Whoever worshipped Muhammad — Muhammad has died. Whoever worshipped Allah — Allah is Ever-Living, never dies.' He recited Al-Imran 3:144. 'Umar's sword fell from his hand.",r:"Bukhari #1241; Surah Al-Imran 3:144"},
+  {y:"632 CE (11 AH)",p:"fin",c:"Washing, Prayer & Burial",e:"Washed by: 'Ali ibn Abi Talib RA, Al-'Abbas RA, al-Fadl ibn 'Abbas RA, Usamah ibn Zayd RA, and Shuqran (freed slave). Wrapped in 3 white Yemeni cotton sheets. Companions prayed in groups — no single imam led the funeral prayer (by his own instruction, interpreted as each companion having individual access to him). Buried beneath the spot in 'A'ishah's RA room where he died — per the hadith: 'Prophets are buried where they die.' Abu Bakr al-Siddiq RA confirmed as first Caliph at Saqifah Banu Sa'idah.",r:"Bukhari #1365; Sealed Nectar p.304–308"},
+];
+
+const phases = {pre:'Pre-Prophethood',mak:'Makkan Phase',med:'Madinan Phase',fin:'Final Years'};
+const phaseClass = {pre:'ph-pre',mak:'ph-mak',med:'ph-med',fin:'ph-fin'};
+const tbody = document.getElementById('tbody');
+const countBar = document.getElementById('count-bar');
+
+function renderRows(filter) {
+  tbody.innerHTML = '';
+  let lastPhase = '';
+  let count = 0;
+  data.forEach(row => {
+    if (filter !== 'all' && row.p !== filter) return;
+    count++;
+    if (row.p !== lastPhase) {
+      const hr = document.createElement('tr');
+      hr.className = 'hdr-row';
+      hr.innerHTML = `<td colspan="5">— ${phases[row.p]} —</td>`;
+      tbody.appendChild(hr);
+      lastPhase = row.p;
+    }
+    const tr = document.createElement('tr');
+    const evLines = row.e.split('\n').map(l => `<div class="ev">${l}</div>`).join('');
+    tr.innerHTML = `
+      <td class="yr">${row.y}</td>
+      <td><span class="phase ${phaseClass[row.p]}">${phases[row.p].split(' ')[0]}</span></td>
+      <td><span class="cat">${row.c}</span></td>
+      <td>${evLines}</td>
+      <td><div class="ref">${row.r}</div></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function filterPhase(phase, btn) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderRows(phase);
+}
+
+// Count pills
+const counts = {all: data.length};
+data.forEach(r => { counts[r.p] = (counts[r.p]||0)+1; });
+const labels = {all:'All Events',pre:'Pre-Prophethood',mak:'Makkan Phase',med:'Madinan Phase',fin:'Final Years'};
+Object.entries(counts).forEach(([k,v]) => {
+  const pill = document.createElement('span');
+  pill.className = 'count-pill';
+  pill.textContent = `${labels[k]}: ${v} events`;
+  countBar.appendChild(pill);
+});
+
+renderRows('all');
+</script>
+</body>
+</html>

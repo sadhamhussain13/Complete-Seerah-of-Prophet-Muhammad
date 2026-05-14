@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asma ul-Husna — The 99 Names of Allah</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-pale: #F5E8C0;
+  --deep: #0D1117;
+  --deep2: #141A24;
+  --deep3: #1B2333;
+  --surface: #1E293B;
+  --surface2: #243044;
+  --text: #F0EAD6;
+  --text2: #B8A98A;
+  --text3: #7A6E5A;
+  --border: rgba(201,168,76,0.18);
+  --border2: rgba(201,168,76,0.35);
+  --praise: #7C6BE8;
+  --mercy: #3BB87A;
+  --hardship: #E06040;
+  --guidance: #4A9FD4;
+  --gratitude: #5DBE8A;
+  --fear: #D44A6A;
+  --provision: #E09030;
+  --protection: #D064A0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--deep);
+  color:var(--text);
+  font-family:'Nunito Sans',sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── PATTERN OVERLAY ─────────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(201,168,76,0.03) 0%, transparent 50%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── SIDEBAR NAV ─────────────────────────────────────── */
+.sidebar{
+  position:fixed;
+  top:0;left:0;
+  width:260px;height:100vh;
+  background:var(--deep2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  z-index:100;
+  transition:transform .3s ease;
+  overflow:hidden;
+}
+.sidebar-logo{
+  padding:28px 24px 20px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sidebar-logo .arabic-logo{
+  font-family:'Amiri',serif;
+  font-size:32px;
+  color:var(--gold);
+  line-height:1;
+  text-align:center;
+  margin-bottom:6px;
+}
+.sidebar-logo .eng-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text3);
+  text-align:center;
+}
+.sidebar-search{
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sidebar-search input{
+  width:100%;
+  background:var(--deep3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px 12px;
+  color:var(--text);
+  font-family:'Nunito Sans',sans-serif;
+  font-size:13px;
+  outline:none;
+  transition:border-color .2s;
+}
+.sidebar-search input::placeholder{color:var(--text3)}
+.sidebar-search input:focus{border-color:var(--gold-light)}
+.sidebar-cats{
+  padding:12px 16px 6px;
+  flex-shrink:0;
+}
+.sidebar-cats p{
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:8px;
+}
+.cat-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  padding:7px 10px;
+  border-radius:8px;
+  border:none;
+  background:transparent;
+  color:var(--text2);
+  font-family:'Nunito Sans',sans-serif;
+  font-size:12.5px;
+  font-weight:400;
+  cursor:pointer;
+  text-align:left;
+  transition:all .15s;
+  margin-bottom:2px;
+}
+.cat-btn:hover{background:var(--surface);color:var(--text)}
+.cat-btn.active{background:rgba(201,168,76,0.12);color:var(--gold-light)}
+.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cat-count{margin-left:auto;font-size:11px;color:var(--text3);background:var(--deep3);padding:2px 7px;border-radius:10px}
+.sidebar-footer{
+  margin-top:auto;
+  padding:16px 20px;
+  border-top:1px solid var(--border);
+  font-size:11px;
+  color:var(--text3);
+  text-align:center;
+  flex-shrink:0;
+}
+.sidebar-footer span{color:var(--gold);font-size:14px}
+
+/* ── MAIN CONTENT ────────────────────────────────────── */
+.main{
+  margin-left:260px;
+  min-height:100vh;
+  position:relative;
+  z-index:1;
+}
+
+/* ── HERO ────────────────────────────────────────────── */
+.hero{
+  padding:60px 48px 40px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(201,168,76,0.04) 0%,transparent 100%);
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ';
+  position:absolute;
+  right:40px;top:20px;
+  font-family:'Amiri',serif;
+  font-size:22px;
+  color:rgba(201,168,76,0.15);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:12px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;
+  font-weight:300;
+  line-height:1.1;
+  color:var(--text);
+  margin-bottom:8px;
+}
+.hero h1 em{
+  font-style:italic;
+  color:var(--gold-light);
+}
+.hero-sub{
+  font-size:14px;
+  color:var(--text2);
+  max-width:520px;
+  line-height:1.7;
+  margin-bottom:28px;
+}
+.hero-stats{
+  display:flex;
+  gap:32px;
+  flex-wrap:wrap;
+}
+.stat-item{
+  text-align:center;
+}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
+  font-weight:300;
+  color:var(--gold);
+  line-height:1;
+}
+.stat-lbl{
+  font-size:11px;
+  color:var(--text3);
+  letter-spacing:.08em;
+  margin-top:2px;
+}
+
+/* ── TOOLBAR ─────────────────────────────────────────── */
+.toolbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 48px;
+  border-bottom:1px solid var(--border);
+  background:var(--deep2);
+  flex-wrap:wrap;
+}
+.view-toggle{
+  display:flex;
+  background:var(--deep3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.view-btn{
+  padding:6px 14px;
+  border:none;
+  background:transparent;
+  color:var(--text3);
+  font-family:'Nunito Sans',sans-serif;
+  font-size:12px;
+  cursor:pointer;
+  transition:all .15s;
+}
+.view-btn.active{background:var(--surface2);color:var(--gold-light)}
+.sort-select{
+  background:var(--deep3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:6px 12px;
+  color:var(--text2);
+  font-family:'Nunito Sans',sans-serif;
+  font-size:12px;
+  outline:none;
+  cursor:pointer;
+}
+.result-info{
+  margin-left:auto;
+  font-size:12px;
+  color:var(--text3);
+}
+
+/* ── CARDS GRID ──────────────────────────────────────── */
+.content{padding:32px 48px 60px}
+.grid-view .names-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
+}
+.list-view .names-container{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+/* CARD */
+.name-card{
+  background:var(--deep2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  cursor:pointer;
+  transition:all .2s ease;
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp .4s ease both;
+}
+.name-card:hover{
+  border-color:var(--border2);
+  background:var(--deep3);
+  transform:translateY(-2px);
+}
+.name-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:var(--cat-color,var(--gold));
+  opacity:0.7;
+}
+.card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.card-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;
+  color:var(--text3);
+  font-weight:400;
+  background:var(--deep3);
+  width:28px;height:28px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.card-arabic{
+  font-family:'Amiri',serif;
+  font-size:28px;
+  color:var(--gold-light);
+  line-height:1;
+  text-align:right;
+}
+.card-transliteration{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  font-style:italic;
+  color:var(--text);
+  margin-bottom:4px;
+}
+.card-meaning{
+  font-size:13px;
+  color:var(--text2);
+  margin-bottom:12px;
+}
+.card-when{
+  font-size:12px;
+  color:var(--text3);
+  border-top:1px solid var(--border);
+  padding-top:10px;
+  line-height:1.5;
+}
+.card-when::before{
+  content:'When to call: ';
+  color:var(--gold);
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  font-size:10px;
+  padding:3px 9px;
+  border-radius:20px;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+/* LIST ROW */
+.name-row{
+  background:var(--deep2);
+  display:grid;
+  grid-template-columns:44px 130px 150px 1fr 200px 110px;
+  align-items:center;
+  gap:0;
+  padding:12px 20px;
+  cursor:pointer;
+  transition:background .15s;
+  border-left:3px solid transparent;
+  animation:fadeUp .3s ease both;
+}
+.name-row:hover{
+  background:var(--deep3);
+  border-left-color:var(--cat-color,var(--gold));
+}
+.row-num{
+  font-size:12px;
+  color:var(--text3);
+  font-family:'Cormorant Garamond',serif;
+}
+.row-arabic{
+  font-family:'Amiri',serif;
+  font-size:22px;
+  color:var(--gold-light);
+  text-align:right;
+  direction:rtl;
+  padding-right:12px;
+}
+.row-trans{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;
+  font-style:italic;
+  color:var(--text);
+  padding-right:12px;
+}
+.row-mean{font-size:13px;color:var(--text2);padding-right:12px}
+.row-when{font-size:11.5px;color:var(--text3);line-height:1.4;padding-right:12px}
+.row-badge{text-align:right}
+
+/* ── DETAIL PANEL (modal) ─────────────────────────────── */
+.overlay{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.7);
+  z-index:200;
+  backdrop-filter:blur(4px);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.overlay.open{display:flex}
+.detail-panel{
+  background:var(--deep2);
+  border:1px solid var(--border2);
+  border-radius:16px;
+  max-width:580px;
+  width:100%;
+  padding:36px;
+  position:relative;
+  animation:panelIn .25s ease;
+}
+@keyframes panelIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.detail-close{
+  position:absolute;
+  top:16px;right:16px;
+  background:var(--deep3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text3);
+  font-size:18px;
+  width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:all .15s;
+}
+.detail-close:hover{color:var(--text);border-color:var(--border2)}
+.detail-num{
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.detail-arabic{
+  font-family:'Amiri',serif;
+  font-size:56px;
+  color:var(--gold-light);
+  text-align:center;
+  direction:rtl;
+  margin-bottom:4px;
+  line-height:1.2;
+}
+.detail-trans{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;
+  font-style:italic;
+  color:var(--text);
+  text-align:center;
+  margin-bottom:6px;
+}
+.detail-meaning{
+  font-size:16px;
+  color:var(--text2);
+  text-align:center;
+  margin-bottom:24px;
+}
+.detail-section{
+  background:var(--deep3);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px 20px;
+  margin-bottom:12px;
+}
+.detail-section-lbl{
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;font-weight:600;
+}
+.detail-section p{font-size:14px;color:var(--text2);line-height:1.7}
+.detail-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:20px;
+}
+.detail-nav button{
+  background:var(--deep3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px 18px;
+  color:var(--text2);
+  font-family:'Nunito Sans',sans-serif;
+  font-size:13px;
+  cursor:pointer;
+  transition:all .15s;
+}
+.detail-nav button:hover{color:var(--gold-light);border-color:var(--border2)}
+.detail-nav span{font-size:12px;color:var(--text3)}
+
+/* ── MOBILE TOGGLE ────────────────────────────────────── */
+.hamburger{
+  display:none;
+  position:fixed;top:16px;left:16px;
+  z-index:150;
+  background:var(--deep2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  width:40px;height:40px;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+  flex-direction:column;gap:5px;
+}
+.hamburger span{
+  width:20px;height:2px;
+  background:var(--gold);
+  border-radius:2px;
+  transition:.2s;
+}
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .hamburger{display:flex}
+  .hero{padding:60px 24px 32px}
+  .toolbar{padding:12px 24px}
+  .content{padding:24px 20px 48px}
+  .name-row{
+    grid-template-columns:36px 110px 130px 1fr;
+    grid-template-rows:auto auto;
+  }
+  .row-when,.row-badge{display:none}
+  .hero h1{font-size:34px}
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── CATEGORY COLORS ──────────────────────────────────── */
+.praise-color{color:var(--praise)!important}
+.mercy-color{color:var(--mercy)!important}
+.hardship-color{color:var(--hardship)!important}
+.guidance-color{color:var(--guidance)!important}
+.gratitude-color{color:var(--gratitude)!important}
+.fear-color{color:var(--fear)!important}
+.provision-color{color:var(--provision)!important}
+.protection-color{color:var(--protection)!important}
+
+.bg-praise{background:rgba(124,107,232,.12);color:#c4bcf5}
+.bg-mercy{background:rgba(59,184,122,.12);color:#7de0aa}
+.bg-hardship{background:rgba(224,96,64,.12);color:#f0a080}
+.bg-guidance{background:rgba(74,159,212,.12);color:#90c8e8}
+.bg-gratitude{background:rgba(93,190,138,.12);color:#8edab4}
+.bg-fear{background:rgba(212,74,106,.12);color:#ec90a8}
+.bg-provision{background:rgba(224,144,48,.12);color:#f0c080}
+.bg-protection{background:rgba(208,100,160,.12);color:#e8a0d0}
+
+/* scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--deep)}
+::-webkit-scrollbar-thumb{background:rgba(201,168,76,.25);border-radius:3px}
+.sidebar-name-list{flex:1;overflow-y:auto;padding:8px 10px}
+.snl-item{
+  display:flex;align-items:center;gap:8px;
+  padding:5px 10px;border-radius:6px;cursor:pointer;
+  font-size:12px;color:var(--text3);transition:all .15s;
+}
+.snl-item:hover{background:var(--surface);color:var(--text2)}
+.snl-item .sn-num{width:22px;text-align:right;flex-shrink:0;color:var(--text3);font-size:11px}
+.snl-item .sn-ar{font-family:'Amiri',serif;font-size:16px;color:var(--gold);flex-shrink:0}
+.snl-item .sn-tr{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- HAMBURGER -->
+<div class="hamburger" id="hamburger" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="arabic-logo">أسماء الله الحسنى</div>
+    <div class="eng-logo">The 99 Names of Allah</div>
+  </div>
+  <div class="sidebar-search">
+    <input type="text" id="sidebarSearch" placeholder="Search names..." oninput="handleSearch(this.value)">
+  </div>
+  <div class="sidebar-cats">
+    <p>Filter by situation</p>
+    <button class="cat-btn active" data-cat="all" onclick="setCategory('all',this)">
+      <span class="cat-dot" style="background:var(--gold)"></span>
+      All Names
+      <span class="cat-count" id="cnt-all">99</span>
+    </button>
+    <button class="cat-btn" data-cat="praise" onclick="setCategory('praise',this)">
+      <span class="cat-dot" style="background:var(--praise)"></span>
+      Praise &amp; Glorification
+      <span class="cat-count" id="cnt-praise"></span>
+    </button>
+    <button class="cat-btn" data-cat="mercy" onclick="setCategory('mercy',this)">
+      <span class="cat-dot" style="background:var(--mercy)"></span>
+      Mercy &amp; Forgiveness
+      <span class="cat-count" id="cnt-mercy"></span>
+    </button>
+    <button class="cat-btn" data-cat="hardship" onclick="setCategory('hardship',this)">
+      <span class="cat-dot" style="background:var(--hardship)"></span>
+      In Hardship &amp; Distress
+      <span class="cat-count" id="cnt-hardship"></span>
+    </button>
+    <button class="cat-btn" data-cat="guidance" onclick="setCategory('guidance',this)">
+      <span class="cat-dot" style="background:var(--guidance)"></span>
+      Guidance &amp; Knowledge
+      <span class="cat-count" id="cnt-guidance"></span>
+    </button>
+    <button class="cat-btn" data-cat="gratitude" onclick="setCategory('gratitude',this)">
+      <span class="cat-dot" style="background:var(--gratitude)"></span>
+      Gratitude &amp; Blessings
+      <span class="cat-count" id="cnt-gratitude"></span>
+    </button>
+    <button class="cat-btn" data-cat="fear" onclick="setCategory('fear',this)">
+      <span class="cat-dot" style="background:var(--fear)"></span>
+      Fear &amp; Awe
+      <span class="cat-count" id="cnt-fear"></span>
+    </button>
+    <button class="cat-btn" data-cat="provision" onclick="setCategory('provision',this)">
+      <span class="cat-dot" style="background:var(--provision)"></span>
+      Provision &amp; Sustenance
+      <span class="cat-count" id="cnt-provision"></span>
+    </button>
+    <button class="cat-btn" data-cat="protection" onclick="setCategory('protection',this)">
+      <span class="cat-dot" style="background:var(--protection)"></span>
+      Protection &amp; Safety
+      <span class="cat-count" id="cnt-protection"></span>
+    </button>
+  </div>
+  <div class="sidebar-name-list" id="sidebarNameList"></div>
+  <div class="sidebar-footer">
+    <span>&#10024;</span> Memorise &amp; Reflect Daily
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="hero">
+    <div class="hero-eyebrow">Islamic Reference · Dhikr &amp; Supplication</div>
+    <h1>Asma <em>ul-Husna</em></h1>
+    <p class="hero-sub">The beautiful names of Allah, each a door to His nearness. Learn their meanings, reflect on their depths, and call upon the right name for every moment of your life.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">99</div><div class="stat-lbl">Sacred Names</div></div>
+      <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl">Situations</div></div>
+      <div class="stat-item"><div class="stat-num" id="showing-stat">99</div><div class="stat-lbl">Currently Showing</div></div>
+    </div>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <div class="view-toggle">
+      <button class="view-btn active" onclick="setView('grid',this)">Grid</button>
+      <button class="view-btn" onclick="setView('list',this)">List</button>
+    </div>
+    <select class="sort-select" onchange="handleSort(this.value)">
+      <option value="num">Sort by number</option>
+      <option value="az">Sort A–Z</option>
+      <option value="cat">Group by situation</option>
+    </select>
+    <span class="result-info" id="result-info">Showing 99 names</span>
+  </div>
+
+  <div class="content grid-view" id="content">
+    <div class="names-container" id="namesContainer"></div>
+  </div>
+</main>
+
+<!-- DETAIL OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeDetail(event)">
+  <div class="detail-panel" id="detailPanel">
+    <button class="detail-close" onclick="closeOverlay()">&#215;</button>
+    <div class="detail-num" id="d-num"></div>
+    <div class="detail-arabic" id="d-ar"></div>
+    <div class="detail-trans" id="d-tr"></div>
+    <div class="detail-meaning" id="d-mean"></div>
+    <div class="detail-section">
+      <div class="detail-section-lbl">Situational Guidance</div>
+      <p id="d-when"></p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-lbl">Category</div>
+      <p><span id="d-badge" class="badge"></span></p>
+    </div>
+    <div class="detail-nav">
+      <button id="d-prev" onclick="navigateDetail(-1)">&#8592; Previous</button>
+      <span id="d-pos"></span>
+      <button id="d-next" onclick="navigateDetail(1)">Next &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const NAMES=[
+  [1,'الرَّحْمَنُ','Ar-Rahman','The Most Compassionate','When seeking broad mercy and love for all of creation — begin every du\'a with this name.','mercy'],
+  [2,'الرَّحِيمُ','Ar-Rahim','The Most Merciful','When seeking personal, specific forgiveness and tender mercy just for you.','mercy'],
+  [3,'الْمَلِكُ','Al-Malik','The Sovereign King','When seeking justice or help against those who abuse worldly authority.','hardship'],
+  [4,'الْقُدُّوسُ','Al-Quddus','The Most Holy','When purifying the heart and seeking spiritual cleanliness before worship.','praise'],
+  [5,'السَّلَامُ','As-Salam','The Source of Peace','When feeling anxious, restless, or seeking deep inner tranquility.','hardship'],
+  [6,'الْمُؤْمِنُ','Al-Mumin','The Granter of Security','When afraid or in need of safety, faith, and certainty.','protection'],
+  [7,'الْمُهَيْمِنُ','Al-Muhaymin','The Guardian & Protector','When seeking divine watch and oversight over all your affairs.','protection'],
+  [8,'الْعَزِيزُ','Al-Aziz','The Almighty','When feeling powerless or humiliated — seeking inner strength and dignity.','hardship'],
+  [9,'الْجَبَّارُ','Al-Jabbar','The Compeller & Restorer','When broken-hearted or shattered; seeking repair of what is damaged.','hardship'],
+  [10,'الْمُتَكَبِّرُ','Al-Mutakabbir','The Supreme in Greatness','In moments of pure glorification of Allah above all things.','praise'],
+  [11,'الْخَالِقُ','Al-Khaliq','The Creator','When in awe of creation; seeking a new beginning or project.','praise'],
+  [12,'الْبَارِئُ','Al-Bari','The Originator','When asking for a fresh start, renewal, or new creation in life.','provision'],
+  [13,'الْمُصَوِّرُ','Al-Musawwir','The Fashioner of Forms','When seeking good character, beauty, or righteous children.','provision'],
+  [14,'الْغَفَّارُ','Al-Ghaffar','The Repeatedly Forgiving','When you keep falling into the same sin — His forgiveness never tires.','mercy'],
+  [15,'الْقَهَّارُ','Al-Qahhar','The Subduer','When seeking help to overcome an oppressor, enemy, or inner temptation.','hardship'],
+  [16,'الْوَهَّابُ','Al-Wahhab','The Bestower of Gifts','When seeking blessings, gifts, or children without worldly exchange.','provision'],
+  [17,'الرَّزَّاقُ','Ar-Razzaq','The Provider','When seeking livelihood, income, or any form of sustenance.','provision'],
+  [18,'الْفَتَّاحُ','Al-Fattah','The Opener','When every door seems closed — seeking breakthrough and opportunity.','hardship'],
+  [19,'الْعَلِيمُ','Al-Alim','The All-Knowing','When seeking knowledge, clarity, or wisdom in moments of confusion.','guidance'],
+  [20,'الْقَابِضُ','Al-Qabid','The Withholder','When accepting loss — trusting divine wisdom in times of scarcity.','fear'],
+  [21,'الْبَاسِطُ','Al-Basit','The Extender','When seeking expansion, abundance, and generous provision.','provision'],
+  [22,'الْخَافِضُ','Al-Khafid','The Humbler','When seeking justice against the arrogant and the oppressors.','hardship'],
+  [23,'الرَّافِعُ','Ar-Rafi','The Exalter','When seeking elevation of status, rank, or honour from Allah.','provision'],
+  [24,'الْمُعِزُّ','Al-Muizz','The Bestower of Honour','When feeling humiliated or stripped of dignity — ask for true honour.','hardship'],
+  [25,'الْمُذِلُّ','Al-Mudhill','The Humiliator','When asking Allah to humble a tyrant or oppressor.','hardship'],
+  [26,'السَّمِيعُ','As-Sami','The All-Hearing','When making du\'a — knowing with certainty Allah hears every whisper.','guidance'],
+  [27,'الْبَصِيرُ','Al-Basir','The All-Seeing','When feeling unseen or overlooked — Allah witnesses all.','guidance'],
+  [28,'الْحَكَمُ','Al-Hakam','The Judge','When seeking fair judgement or resolution of disputes.','guidance'],
+  [29,'الْعَدْلُ','Al-Adl','The Utterly Just','When injustice is done — seeking divine fairness and balance.','hardship'],
+  [30,'اللَّطِيفُ','Al-Latif','The Subtle & Gentle','In quiet hardship — when needing Allah\'s hidden, gentle grace.','mercy'],
+  [31,'الْخَبِيرُ','Al-Khabir','The All-Aware','When seeking awareness of what is hidden or not yet known.','guidance'],
+  [32,'الْحَلِيمُ','Al-Halim','The Forbearing','When asking Allah to withhold punishment; seeking patience.','mercy'],
+  [33,'الْعَظِيمُ','Al-Azim','The Magnificent','When glorifying Allah\'s overwhelming greatness in worship.','praise'],
+  [34,'الْغَفُورُ','Al-Ghafur','The All-Forgiving','When seeking complete forgiveness — wiped clean, as if never done.','mercy'],
+  [35,'الشَّكُورُ','Ash-Shakur','The Most Appreciative','When giving thanks — He multiplies even your smallest deeds.','gratitude'],
+  [36,'الْعَلِيُّ','Al-Aliyy','The Most High','When glorifying Allah\'s supreme station above everything.','praise'],
+  [37,'الْكَبِيرُ','Al-Kabir','The Most Great','When humbling oneself before Allah\'s infinite greatness.','praise'],
+  [38,'الْحَفِيظُ','Al-Hafiz','The Preserver & Guardian','When seeking protection of family, health, property, or memory.','protection'],
+  [39,'الْمُقِيتُ','Al-Muqit','The Sustainer','When asking for physical nourishment and spiritual strength.','provision'],
+  [40,'الْحَسِيبُ','Al-Hasib','The Reckoner','When fearing accountability — He is sufficient as a reckoner.','fear'],
+  [41,'الْجَلِيلُ','Al-Jalil','The Majestic','When overwhelmed by Allah\'s majesty in silent worship.','praise'],
+  [42,'الْكَرِيمُ','Al-Karim','The Most Generous','When hoping for generosity beyond what you deserve.','provision'],
+  [43,'الرَّقِيبُ','Ar-Raqib','The Watchful','When seeking accountability in private deeds; fear of hypocrisy.','fear'],
+  [44,'الْمُجِيبُ','Al-Mujib','The Responsive','When calling upon Allah, trusting that He answers every prayer.','guidance'],
+  [45,'الْوَاسِعُ','Al-Wasi','The All-Encompassing','When feeling limited — His mercy and capacity are boundless.','praise'],
+  [46,'الْحَكِيمُ','Al-Hakim','The Perfectly Wise','When confused about life\'s events — trusting His perfect wisdom.','guidance'],
+  [47,'الْوَدُودُ','Al-Wadud','The Most Loving','When seeking Allah\'s love; healing broken relationships.','mercy'],
+  [48,'الْمَجِيدُ','Al-Majid','The Glorious','When praising the noble and exalted glory of Allah.','praise'],
+  [49,'الْبَاعِثُ','Al-Baith','The Resurrector','When contemplating death and the certainty of the afterlife.','fear'],
+  [50,'الشَّهِيدُ','Ash-Shahid','The All-Witnessing','When oppressed with no earthly evidence — He is your witness.','hardship'],
+  [51,'الْحَقُّ','Al-Haqq','The Absolute Truth','When seeking truth and clarity amidst confusion or falsehood.','guidance'],
+  [52,'الْوَكِيلُ','Al-Wakil','The Trustee','When overwhelmed by decisions — entrust all affairs to Allah.','hardship'],
+  [53,'الْقَوِيُّ','Al-Qawiyy','The All-Strong','When feeling utterly weak — asking for His strength to be yours.','hardship'],
+  [54,'الْمَتِينُ','Al-Matin','The Firm','When seeking steadfastness in faith, resolve, and consistency.','hardship'],
+  [55,'الْوَلِيُّ','Al-Wali','The Protecting Friend','When in need of a loyal, loving guardian and close ally.','protection'],
+  [56,'الْحَمِيدُ','Al-Hamid','The Praiseworthy','When offering praise — all praise returns to Him alone.','gratitude'],
+  [57,'الْمُحْصِيُ','Al-Muhsi','The All-Enumerating','When remembering that every atom of deed is counted.','fear'],
+  [58,'الْمُبْدِئُ','Al-Mubdi','The Originator','When starting something new — seeking His blessing upon it.','provision'],
+  [59,'الْمُعِيدُ','Al-Muid','The Restorer','When lost or broken — seeking renewal, return, and restoration.','hardship'],
+  [60,'الْمُحْيِي','Al-Muhyi','The Giver of Life','When facing illness, grief, or loss of hope — asking for vitality.','provision'],
+  [61,'الْمُمِيتُ','Al-Mumit','The Bringer of Death','When accepting mortality — seeking a good, faithful death.','fear'],
+  [62,'الْحَيُّ','Al-Hayy','The Ever-Living','When seeking constant help — He never sleeps nor tires.','praise'],
+  [63,'الْقَيُّومُ','Al-Qayyum','The Self-Subsisting','When asking the One on whom all existence depends.','praise'],
+  [64,'الْوَاجِدُ','Al-Wajid','The Perceiver','When seeking richness through nearness to Allah alone.','gratitude'],
+  [65,'الْمَاجِدُ','Al-Majid','The Most Noble','When glorifying the nobility and majesty of Allah\'s essence.','praise'],
+  [66,'الْوَاحِدُ','Al-Wahid','The One','When affirming Tawhid in times of confusion or spiritual testing.','guidance'],
+  [67,'الْأَحَدُ','Al-Ahad','The Unique','When declaring absolute oneness; protection from shirk.','guidance'],
+  [68,'الصَّمَدُ','As-Samad','The Eternal Refuge','When all worldly help fails — He alone is the eternal refuge.','hardship'],
+  [69,'الْقَادِرُ','Al-Qadir','The Omnipotent','When asking for what seems impossible to be made possible.','hardship'],
+  [70,'الْمُقْتَدِرُ','Al-Muqtadir','The All-Powerful','When needing decisive, overwhelming, unstoppable divine power.','hardship'],
+  [71,'الْمُقَدِّمُ','Al-Muqaddim','The Expediter','When asking for something to come sooner — divine priority.','provision'],
+  [72,'الْمُؤَخِّرُ','Al-Muakhkhir','The Delayer','When accepting delay — trusting that His timing is perfect.','guidance'],
+  [73,'الْأَوَّلُ','Al-Awwal','The First','When glorifying that Allah precedes all of existence.','praise'],
+  [74,'الْآخِرُ','Al-Akhir','The Last','When seeking comfort that Allah remains after everything ends.','praise'],
+  [75,'الظَّاهِرُ','Az-Zahir','The Manifest','When seeking clear signs and evidence of Allah in the world.','guidance'],
+  [76,'الْبَاطِنُ','Al-Batin','The Hidden','When seeking the subtle inner reality and secrets of faith.','guidance'],
+  [77,'الْوَالِي','Al-Wali','The Governor','When seeking divine management and order of worldly affairs.','protection'],
+  [78,'الْمُتَعَالِي','Al-Mutaali','The Most Exalted','When glorifying Allah above all limitation and imperfection.','praise'],
+  [79,'الْبَرُّ','Al-Barr','The Source of Goodness','When asking for sincere kindness and righteous blessings.','mercy'],
+  [80,'التَّوَّابُ','At-Tawwab','The Ever-Accepting of Repentance','When returning to Allah after sin — tawbah, again and again.','mercy'],
+  [81,'الْمُنْتَقِمُ','Al-Muntaqim','The Avenger','When oppressed with no recourse — asking for divine retribution.','hardship'],
+  [82,'الْعَفُوُّ','Al-Afuww','The Pardoner','When seeking complete erasure of sins — not just forgiveness, but erasure.','mercy'],
+  [83,'الرَّؤُوفُ','Ar-Rauf','The Compassionate & Kind','When in pain — asking for His tender, gentle mercy.','mercy'],
+  [84,'مَالِكُ الْمُلْكِ','Malik-ul-Mulk','The Owner of Sovereignty','When worldly power fails — the ultimate King owns everything.','praise'],
+  [85,'ذُو الْجَلَالِ','Dhul-Jalal wal-Ikram','The Lord of Majesty & Honour','When glorifying Allah\'s perfection at the close of salah.','praise'],
+  [86,'الْمُقْسِطُ','Al-Muqsit','The Equitable','When seeking fair, balanced outcomes in disputes.','guidance'],
+  [87,'الْجَامِعُ','Al-Jami','The Gatherer','When separated from loved ones — asking Allah to unite you.','hardship'],
+  [88,'الْغَنِيُّ','Al-Ghani','The Self-Sufficient','When feeling needy — directing all want and desire to Allah alone.','provision'],
+  [89,'الْمُغْنِي','Al-Mughni','The Enricher','When seeking financial independence or true sufficiency.','provision'],
+  [90,'الْمَانِعُ','Al-Mani','The Preventer of Harm','When seeking a shield against evil, envy, and harm.','protection'],
+  [91,'الضَّارُّ','Ad-Darr','The Afflicter','When accepting hardship as divine will, test, and purification.','fear'],
+  [92,'النَّافِعُ','An-Nafi','The Benefiter','When seeking to receive true benefit and to give it to others.','gratitude'],
+  [93,'النُّورُ','An-Nur','The Light','When in spiritual darkness — seeking guidance and illumination.','guidance'],
+  [94,'الْهَادِي','Al-Hadi','The Guide','When lost in life decisions — seeking the straight path.','guidance'],
+  [95,'الْبَدِيعُ','Al-Badi','The Incomparable Originator','When marvelling at creation — praising His unique creativity.','praise'],
+  [96,'الْبَاقِي','Al-Baqi','The Everlasting','When mourning loss — seeking what endures beyond death.','fear'],
+  [97,'الْوَارِثُ','Al-Warith','The Inheritor of All','When material wealth is lost — all returns to Allah.','gratitude'],
+  [98,'الرَّشِيدُ','Ar-Rashid','The Guide to the Right Path','When seeking righteous direction and sound judgement.','guidance'],
+  [99,'الصَّبُورُ','As-Sabur','The Most Patient','When enduring long trials — asking for patience like His own.','hardship'],
+];
+const CAT_META={
+  all:{label:'All',bg:'',color:'var(--gold)'},
+  praise:{label:'Praise',bg:'bg-praise',color:'var(--praise)'},
+  mercy:{label:'Mercy',bg:'bg-mercy',color:'var(--mercy)'},
+  hardship:{label:'Hardship',bg:'bg-hardship',color:'var(--hardship)'},
+  guidance:{label:'Guidance',bg:'bg-guidance',color:'var(--guidance)'},
+  gratitude:{label:'Gratitude',bg:'bg-gratitude',color:'var(--gratitude)'},
+  fear:{label:'Awe',bg:'bg-fear',color:'var(--fear)'},
+  provision:{label:'Provision',bg:'bg-provision',color:'var(--provision)'},
+  protection:{label:'Protection',bg:'bg-protection',color:'var(--protection)'},
+};
+
+let activeCat='all', searchQ='', viewMode='grid', sortMode='num', detailIdx=0, filteredData=[...NAMES];
+
+function getFiltered(){
+  let d=[...NAMES];
+  if(activeCat!=='all') d=d.filter(r=>r[5]===activeCat);
+  if(searchQ){const q=searchQ.toLowerCase();d=d.filter(r=>r[1].includes(searchQ)||r[2].toLowerCase().includes(q)||r[3].toLowerCase().includes(q)||r[4].toLowerCase().includes(q));}
+  if(sortMode==='az') d.sort((a,b)=>a[2].localeCompare(b[2]));
+  else if(sortMode==='cat') d.sort((a,b)=>a[5].localeCompare(b[5])||a[0]-b[0]);
+  else d.sort((a,b)=>a[0]-b[0]);
+  return d;
+}
+
+function catColor(cat){return`var(--${cat})`}
+
+function buildCard(r,i){
+  const meta=CAT_META[r[5]];
+  return`<div class="name-card" style="--cat-color:${catColor(r[5])}" onclick="openDetail(${i})">
+    <div class="card-top">
+      <div class="card-num">${r[0]}</div>
+      <div class="card-arabic">${r[1]}</div>
+    </div>
+    <div class="card-transliteration">${r[2]}</div>
+    <div class="card-meaning">${r[3]}</div>
+    <div class="card-when">${r[4]}</div>
+    <div style="margin-top:12px"><span class="badge ${meta.bg}">${meta.label}</span></div>
+  </div>`;
+}
+function buildRow(r,i){
+  const meta=CAT_META[r[5]];
+  return`<div class="name-row" style="--cat-color:${catColor(r[5])}" onclick="openDetail(${i})">
+    <div class="row-num">${r[0]}</div>
+    <div class="row-arabic">${r[1]}</div>
+    <div class="row-trans">${r[2]}</div>
+    <div class="row-mean">${r[3]}</div>
+    <div class="row-when">${r[4]}</div>
+    <div class="row-badge"><span class="badge ${meta.bg}">${meta.label}</span></div>
+  </div>`;
+}
+
+function buildSidebarList(){
+  const el=document.getElementById('sidebarNameList');
+  el.innerHTML=NAMES.map(r=>`<div class="snl-item" onclick="openDetailByNum(${r[0]})">
+    <span class="sn-num">${r[0]}</span>
+    <span class="sn-ar">${r[1].substring(0,6)}</span>
+    <span class="sn-tr">${r[2]}</span>
+  </div>`).join('');
+}
+
+function render(){
+  filteredData=getFiltered();
+  const container=document.getElementById('namesContainer');
+  if(viewMode==='grid'){
+    container.innerHTML=filteredData.map((r,i)=>buildCard(r,i)).join('');
+  }else{
+    container.innerHTML=filteredData.map((r,i)=>buildRow(r,i)).join('');
+  }
+  document.getElementById('result-info').textContent=`Showing ${filteredData.length} of 99 names`;
+  document.getElementById('showing-stat').textContent=filteredData.length;
+  updateCounts();
+}
+
+function updateCounts(){
+  const cats=['praise','mercy','hardship','guidance','gratitude','fear','provision','protection'];
+  cats.forEach(c=>{
+    document.getElementById('cnt-'+c).textContent=NAMES.filter(r=>r[5]===c).length;
+  });
+  document.getElementById('cnt-all').textContent=99;
+}
+
+function setCategory(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function handleSearch(v){searchQ=v;render();}
+function setView(mode,btn){
+  viewMode=mode;
+  document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const c=document.getElementById('content');
+  c.className=mode==='grid'?'content grid-view':'content list-view';
+  render();
+}
+function handleSort(v){sortMode=v;render();}
+
+function openDetail(idx){
+  detailIdx=idx;
+  showDetail(filteredData[idx]);
+  document.getElementById('overlay').classList.add('open');
+}
+function openDetailByNum(num){
+  const r=NAMES.find(n=>n[0]===num);
+  if(!r)return;
+  const idx=filteredData.findIndex(n=>n[0]===num);
+  detailIdx=idx>=0?idx:0;
+  filteredData=getFiltered();
+  showDetail(r);
+  document.getElementById('overlay').classList.add('open');
+}
+function showDetail(r){
+  const meta=CAT_META[r[5]];
+  document.getElementById('d-num').textContent=`Name ${r[0]} of 99`;
+  document.getElementById('d-ar').textContent=r[1];
+  document.getElementById('d-tr').textContent=r[2];
+  document.getElementById('d-mean').textContent=r[3];
+  document.getElementById('d-when').textContent=r[4];
+  const b=document.getElementById('d-badge');
+  b.textContent=meta.label;
+  b.className=`badge ${meta.bg}`;
+  document.getElementById('d-pos').textContent=`${detailIdx+1} / ${filteredData.length}`;
+}
+function navigateDetail(dir){
+  detailIdx=(detailIdx+dir+filteredData.length)%filteredData.length;
+  showDetail(filteredData[detailIdx]);
+}
+function closeOverlay(){document.getElementById('overlay').classList.remove('open');}
+function closeDetail(e){if(e.target===document.getElementById('overlay'))closeOverlay();}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('overlay').classList.contains('open'))return;
+  if(e.key==='Escape')closeOverlay();
+  if(e.key==='ArrowRight')navigateDetail(1);
+  if(e.key==='ArrowLeft')navigateDetail(-1);
+});
+
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+document.getElementById('sidebarSearch').addEventListener('input',e=>{handleSearch(e.target.value);});
+
+buildSidebarList();
+render();
+</script>
+</body>
+</html>
