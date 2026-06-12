@@ -2,6 +2,15 @@
 
 A beautifully designed and interactive website that presents the complete Seerah (biography) timeline of Prophet Muhammad ﷺ in a structured and easy-to-understand format.
 
+## Live Projects
+
+🌐 Seerah of Prophet Muhammad:
+https://seerah-of-prophet-mohammad.netlify.app/
+
+🌐 Asma-ul-Husna (99 Names of Allah):
+https://asma-ul-husna-names.netlify.app/
+
+
 ## 🌟 Features
 
 - 📅 Complete chronological Seerah timeline
