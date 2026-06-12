@@ -1,562 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Asma ul-Husna — The 99 Names of Allah</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --gold: #C9A84C;
-  --gold-light: #E8C97A;
-  --gold-pale: #F5E8C0;
-  --deep: #0D1117;
-  --deep2: #141A24;
-  --deep3: #1B2333;
-  --surface: #1E293B;
-  --surface2: #243044;
-  --text: #F0EAD6;
-  --text2: #B8A98A;
-  --text3: #7A6E5A;
-  --border: rgba(201,168,76,0.18);
-  --border2: rgba(201,168,76,0.35);
-  --praise: #7C6BE8;
-  --mercy: #3BB87A;
-  --hardship: #E06040;
-  --guidance: #4A9FD4;
-  --gratitude: #5DBE8A;
-  --fear: #D44A6A;
-  --provision: #E09030;
-  --protection: #D064A0;
+/* ── THEME VARIABLES ─────────────────────────────────── */
+:root,[data-theme="dark"]{
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-pale:#F5E8C0;
+  --bg:#0D1117;--bg2:#141A24;--bg3:#1B2333;
+  --surface:#1E293B;--surface2:#243044;
+  --text:#F0EAD6;--text2:#B8A98A;--text3:#7A6E5A;
+  --border:rgba(201,168,76,0.18);--border2:rgba(201,168,76,0.35);
+  --card-bg:#141A24;--card-hover:#1B2333;
+  --praise:#7C6BE8;--mercy:#3BB87A;--hardship:#E06040;
+  --guidance:#4A9FD4;--gratitude:#5DBE8A;--fear:#D44A6A;
+  --provision:#E09030;--protection:#D064A0;
+  --toggle-bg:#1B2333;--toggle-knob:#C9A84C;
 }
+[data-theme="light"]{
+  --gold:#A07828;--gold-light:#8B6520;--gold-pale:#5A3E0A;
+  --bg:#FAF7F2;--bg2:#F2EDE4;--bg3:#EAE3D6;
+  --surface:#E8E0D0;--surface2:#DDD5C4;
+  --text:#1A1510;--text2:#5A4A30;--text3:#8A7A60;
+  --border:rgba(160,120,40,0.2);--border2:rgba(160,120,40,0.4);
+  --card-bg:#F2EDE4;--card-hover:#EAE3D6;
+  --praise:#5040C0;--mercy:#1A7A50;--hardship:#B83820;
+  --guidance:#1A6090;--gratitude:#2A8050;--fear:#A0203A;
+  --provision:#B06010;--protection:#A03080;
+  --toggle-bg:#EAE3D6;--toggle-knob:#A07828;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:var(--deep);
-  color:var(--text);
-  font-family:'Nunito Sans',sans-serif;
-  font-weight:300;
-  line-height:1.6;
-  overflow-x:hidden;
+  background:var(--bg);color:var(--text);
+  font-family:'Nunito Sans',sans-serif;font-weight:300;
+  line-height:1.6;overflow-x:hidden;
+  transition:background .3s,color .3s;
 }
-
-/* ── PATTERN OVERLAY ─────────────────────────────────── */
 body::before{
-  content:'';
-  position:fixed;
-  inset:0;
+  content:'';position:fixed;inset:0;
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(201,168,76,0.03) 0%, transparent 50%);
-  pointer-events:none;
-  z-index:0;
+    radial-gradient(circle at 20% 20%,rgba(201,168,76,0.04) 0%,transparent 50%),
+    radial-gradient(circle at 80% 80%,rgba(201,168,76,0.03) 0%,transparent 50%);
+  pointer-events:none;z-index:0;
 }
 
-/* ── SIDEBAR NAV ─────────────────────────────────────── */
+/* ── SIDEBAR ─────────────────────────────────────────── */
 .sidebar{
-  position:fixed;
-  top:0;left:0;
-  width:260px;height:100vh;
-  background:var(--deep2);
-  border-right:1px solid var(--border);
+  position:fixed;top:0;left:0;
+  width:250px;height:100vh;
+  background:var(--bg2);border-right:1px solid var(--border);
   display:flex;flex-direction:column;
-  z-index:100;
-  transition:transform .3s ease;
-  overflow:hidden;
+  z-index:100;transition:transform .3s ease,background .3s;overflow:hidden;
 }
 .sidebar-logo{
-  padding:28px 24px 20px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
+  padding:24px 20px 18px;border-bottom:1px solid var(--border);flex-shrink:0;
 }
 .sidebar-logo .arabic-logo{
-  font-family:'Amiri',serif;
-  font-size:32px;
-  color:var(--gold);
-  line-height:1;
-  text-align:center;
-  margin-bottom:6px;
+  font-family:'Amiri',serif;font-size:30px;color:var(--gold);
+  line-height:1;text-align:center;margin-bottom:5px;
 }
 .sidebar-logo .eng-logo{
-  font-family:'Cormorant Garamond',serif;
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--text3);
-  text-align:center;
+  font-family:'Cormorant Garamond',serif;font-size:14px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--text5);text-align:center;
 }
-.sidebar-search{
-  padding:14px 16px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
+
+/* ── THEME TOGGLE ────────────────────────────────────── */
+.theme-toggle-wrap{
+  padding:12px 16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
 }
+.theme-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);}
+.theme-toggle{
+  position:relative;width:46px;height:24px;cursor:pointer;
+}
+.theme-toggle input{opacity:0;width:0;height:0;}
+.toggle-track{
+  position:absolute;inset:0;border-radius:24px;
+  background:var(--toggle-bg);border:1px solid var(--border2);
+  transition:background .25s;
+}
+.toggle-knob{
+  position:absolute;top:3px;left:3px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--toggle-knob);
+  transition:transform .25s,background .25s;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;line-height:1;
+}
+.theme-toggle input:checked ~ .toggle-track{background:var(--surface2);}
+.theme-toggle input:checked ~ .toggle-knob{transform:translateX(22px);}
+.theme-icon{font-size:10px;user-select:none;pointer-events:none;}
+
+/* ── SIDEBAR SEARCH ──────────────────────────────────── */
+.sidebar-search{padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .sidebar-search input{
-  width:100%;
-  background:var(--deep3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:8px 12px;
-  color:var(--text);
-  font-family:'Nunito Sans',sans-serif;
-  font-size:13px;
-  outline:none;
-  transition:border-color .2s;
+  width:100%;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:8px 12px;color:var(--text);
+  font-family:'Nunito Sans',sans-serif;font-size:13px;outline:none;
+  transition:border-color .2s,background .3s,color .3s;
 }
 .sidebar-search input::placeholder{color:var(--text3)}
 .sidebar-search input:focus{border-color:var(--gold-light)}
-.sidebar-cats{
-  padding:12px 16px 6px;
-  flex-shrink:0;
-}
-.sidebar-cats p{
-  font-size:10px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--text3);
-  margin-bottom:8px;
+
+/* ── SITUATION FILTERS ───────────────────────────────── */
+.sidebar-cats{padding:14px 14px 8px;flex-shrink:0;overflow-y:auto;flex:1;}
+.sidebar-cats-label{
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text5);margin-bottom:10px;padding-left:4px;
 }
 .cat-btn{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  width:100%;
-  padding:7px 10px;
-  border-radius:8px;
-  border:none;
-  background:transparent;
-  color:var(--text2);
-  font-family:'Nunito Sans',sans-serif;
-  font-size:12.5px;
-  font-weight:400;
-  cursor:pointer;
-  text-align:left;
-  transition:all .15s;
-  margin-bottom:2px;
+  display:flex;align-items:center;gap:10px;width:100%;
+  padding:9px 12px;border-radius:10px;border:1px solid transparent;
+  background:transparent;color:var(--text2);
+  font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:400;
+  cursor:pointer;text-align:left;transition:all .15s;margin-bottom:3px;
 }
-.cat-btn:hover{background:var(--surface);color:var(--text)}
-.cat-btn.active{background:rgba(201,168,76,0.12);color:var(--gold-light)}
-.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.cat-count{margin-left:auto;font-size:11px;color:var(--text3);background:var(--deep3);padding:2px 7px;border-radius:10px}
-.sidebar-footer{
-  margin-top:auto;
-  padding:16px 20px;
-  border-top:1px solid var(--border);
-  font-size:11px;
-  color:var(--text3);
-  text-align:center;
-  flex-shrink:0;
+.cat-btn:hover{background:var(--surface);color:var(--text);border-color:var(--border);}
+.cat-btn.active{
+  background:rgba(201,168,76,0.10);
+  color:var(--gold-light);
+  border-color:var(--border2);
 }
-.sidebar-footer span{color:var(--gold);font-size:14px}
+.cat-icon{font-size:15px;width:22px;text-align:center;flex-shrink:0;}
+.cat-info{flex:1;display:flex;flex-direction:column;gap:1px;}
+.cat-name{font-size:12.5px;line-height:1.3;}
+.cat-sub{font-size:10px;color:var(--text3);line-height:1.2;}
+.cat-btn.active .cat-sub{color:var(--gold);opacity:.7;}
+.cat-count{
+  margin-left:auto;font-size:10px;color:var(--text3);
+  background:var(--bg3);padding:2px 7px;border-radius:10px;flex-shrink:0;
+  transition:background .2s,color .2s;
+}
+.cat-btn.active .cat-count{background:rgba(201,168,76,0.15);color:var(--gold);}
 
-/* ── MAIN CONTENT ────────────────────────────────────── */
-.main{
-  margin-left:260px;
-  min-height:100vh;
-  position:relative;
-  z-index:1;
+.sidebar-footer{
+  padding:12px 16px;border-top:1px solid var(--border);
+  font-size:11px;color:var(--text3);text-align:center;flex-shrink:0;
 }
+.sidebar-footer em{color:var(--gold);font-style:normal;}
+
+/* ── MAIN ────────────────────────────────────────────── */
+.main{margin-left:250px;min-height:100vh;position:relative;z-index:1;}
 
 /* ── HERO ────────────────────────────────────────────── */
 .hero{
-  padding:60px 48px 40px;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,rgba(201,168,76,0.04) 0%,transparent 100%);
-  position:relative;
-  overflow:hidden;
+  padding:52px 48px 36px;border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(201,168,76,0.05) 0%,transparent 100%);
+  position:relative;overflow:hidden;
+  transition:background .3s;
 }
-.hero::before{
+.hero::after{
   content:'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ';
-  position:absolute;
-  right:40px;top:20px;
-  font-family:'Amiri',serif;
-  font-size:22px;
-  color:rgba(201,168,76,0.15);
-  pointer-events:none;
+  position:absolute;right:40px;top:24px;
+  font-family:'Amiri',serif;font-size:21px;
+  color:rgba(201,168,76,0.12);pointer-events:none;
 }
-.hero-eyebrow{
-  font-size:11px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:12px;
-}
+.hero-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
 .hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:48px;
-  font-weight:300;
-  line-height:1.1;
-  color:var(--text);
-  margin-bottom:8px;
+  font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:800;
+  line-height:1.1;color:var(--text);margin-bottom:8px;
 }
-.hero h1 em{
-  font-style:italic;
-  color:var(--gold-light);
-}
-.hero-sub{
-  font-size:14px;
-  color:var(--text2);
-  max-width:520px;
-  line-height:1.7;
-  margin-bottom:28px;
-}
-.hero-stats{
-  display:flex;
-  gap:32px;
-  flex-wrap:wrap;
-}
-.stat-item{
-  text-align:center;
-}
-.stat-num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:36px;
-  font-weight:300;
-  color:var(--gold);
-  line-height:1;
-}
-.stat-lbl{
-  font-size:11px;
-  color:var(--text3);
-  letter-spacing:.08em;
-  margin-top:2px;
-}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:14px;color:var(--text2);max-width:500px;line-height:1.7;margin-bottom:24px;}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);line-height:1;}
+.stat-lbl{font-size:11px;color:var(--text3);letter-spacing:.08em;margin-top:2px;}
 
 /* ── TOOLBAR ─────────────────────────────────────────── */
 .toolbar{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:14px 48px;
-  border-bottom:1px solid var(--border);
-  background:var(--deep2);
-  flex-wrap:wrap;
+  display:flex;align-items:center;gap:12px;
+  padding:12px 48px;border-bottom:1px solid var(--border);
+  background:var(--bg2);flex-wrap:wrap;
+  transition:background .3s;
 }
 .view-toggle{
-  display:flex;
-  background:var(--deep3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  overflow:hidden;
-  flex-shrink:0;
+  display:flex;background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;flex-shrink:0;
 }
 .view-btn{
-  padding:6px 14px;
-  border:none;
-  background:transparent;
-  color:var(--text3);
-  font-family:'Nunito Sans',sans-serif;
-  font-size:12px;
-  cursor:pointer;
-  transition:all .15s;
+  padding:6px 14px;border:none;background:transparent;color:var(--text3);
+  font-family:'Nunito Sans',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;
 }
-.view-btn.active{background:var(--surface2);color:var(--gold-light)}
+.view-btn.active{background:var(--surface2);color:var(--gold-light);}
 .sort-select{
-  background:var(--deep3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:6px 12px;
-  color:var(--text2);
-  font-family:'Nunito Sans',sans-serif;
-  font-size:12px;
-  outline:none;
-  cursor:pointer;
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+  padding:6px 12px;color:var(--text2);font-family:'Nunito Sans',sans-serif;
+  font-size:12px;outline:none;cursor:pointer;transition:background .3s,color .3s;
 }
-.result-info{
-  margin-left:auto;
-  font-size:12px;
-  color:var(--text3);
-}
+.result-info{margin-left:auto;font-size:12px;color:var(--text3);}
 
-/* ── CARDS GRID ──────────────────────────────────────── */
-.content{padding:32px 48px 60px}
+/* ── CONTENT ─────────────────────────────────────────── */
+.content{padding:28px 48px 60px;}
 .grid-view .names-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:16px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;
 }
 .list-view .names-container{
-  display:flex;
-  flex-direction:column;
-  gap:1px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  overflow:hidden;
+  display:flex;flex-direction:column;gap:1px;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
 }
 
 /* CARD */
 .name-card{
-  background:var(--deep2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:20px;
-  cursor:pointer;
-  transition:all .2s ease;
-  position:relative;
-  overflow:hidden;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:12px;
+  padding:18px;cursor:pointer;transition:all .2s ease;position:relative;overflow:hidden;
   animation:fadeUp .4s ease both;
 }
-.name-card:hover{
-  border-color:var(--border2);
-  background:var(--deep3);
-  transform:translateY(-2px);
-}
+.name-card:hover{border-color:var(--border2);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15);}
 .name-card::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:2px;
-  background:var(--cat-color,var(--gold));
-  opacity:0.7;
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--cat-color,var(--gold));opacity:.8;
 }
-.card-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  margin-bottom:12px;
-}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
 .card-num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:13px;
-  color:var(--text3);
-  font-weight:400;
-  background:var(--deep3);
-  width:28px;height:28px;
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
+  font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--text3);
+  background:var(--bg3);width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.card-arabic{
-  font-family:'Amiri',serif;
-  font-size:28px;
-  color:var(--gold-light);
-  line-height:1;
-  text-align:right;
-}
-.card-transliteration{
-  font-family:'Cormorant Garamond',serif;
-  font-size:18px;
-  font-style:italic;
-  color:var(--text);
-  margin-bottom:4px;
-}
-.card-meaning{
-  font-size:13px;
-  color:var(--text2);
-  margin-bottom:12px;
-}
+.card-arabic{font-family:'Amiri',serif;font-size:26px;color:var(--gold-light);line-height:1;text-align:right;}
+.card-transliteration{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text);margin-bottom:3px;}
+.card-meaning{font-size:12.5px;color:var(--text2);margin-bottom:10px;}
 .card-when{
-  font-size:12px;
-  color:var(--text3);
-  border-top:1px solid var(--border);
-  padding-top:10px;
-  line-height:1.5;
+  font-size:11.5px;color:var(--text3);border-top:1px solid var(--border);
+  padding-top:9px;line-height:1.5;
 }
 .card-when::before{
-  content:'When to call: ';
-  color:var(--gold);
-  font-weight:600;
-  font-size:11px;
-  letter-spacing:.05em;
-  text-transform:uppercase;
+  content:'When to call: ';color:var(--gold);font-weight:600;
+  font-size:10px;letter-spacing:.05em;text-transform:uppercase;
 }
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  font-size:10px;
-  padding:3px 9px;
-  border-radius:20px;
-  font-weight:600;
-  letter-spacing:.05em;
-  text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:4px;font-size:10px;
+  padding:3px 8px;border-radius:20px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
 }
 
 /* LIST ROW */
 .name-row{
-  background:var(--deep2);
-  display:grid;
-  grid-template-columns:44px 130px 150px 1fr 200px 110px;
-  align-items:center;
-  gap:0;
-  padding:12px 20px;
-  cursor:pointer;
-  transition:background .15s;
-  border-left:3px solid transparent;
+  background:var(--card-bg);
+  display:grid;grid-template-columns:40px 120px 140px 1fr 190px 105px;
+  align-items:center;padding:11px 18px;cursor:pointer;
+  transition:background .15s;border-left:3px solid transparent;
   animation:fadeUp .3s ease both;
 }
-.name-row:hover{
-  background:var(--deep3);
-  border-left-color:var(--cat-color,var(--gold));
-}
-.row-num{
-  font-size:12px;
-  color:var(--text3);
-  font-family:'Cormorant Garamond',serif;
-}
-.row-arabic{
-  font-family:'Amiri',serif;
-  font-size:22px;
-  color:var(--gold-light);
-  text-align:right;
-  direction:rtl;
-  padding-right:12px;
-}
-.row-trans{
-  font-family:'Cormorant Garamond',serif;
-  font-size:15px;
-  font-style:italic;
-  color:var(--text);
-  padding-right:12px;
-}
-.row-mean{font-size:13px;color:var(--text2);padding-right:12px}
-.row-when{font-size:11.5px;color:var(--text3);line-height:1.4;padding-right:12px}
-.row-badge{text-align:right}
+.name-row:hover{background:var(--card-hover);border-left-color:var(--cat-color,var(--gold));}
+.row-num{font-size:12px;color:var(--text3);font-family:'Cormorant Garamond',serif;}
+.row-arabic{font-family:'Amiri',serif;font-size:21px;color:var(--gold-light);text-align:right;direction:rtl;padding-right:10px;}
+.row-trans{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text);padding-right:10px;}
+.row-mean{font-size:12.5px;color:var(--text2);padding-right:10px;}
+.row-when{font-size:11px;color:var(--text3);line-height:1.4;padding-right:10px;}
+.row-badge{text-align:right;}
 
-/* ── DETAIL PANEL (modal) ─────────────────────────────── */
-.overlay{
-  display:none;
-  position:fixed;inset:0;
-  background:rgba(0,0,0,0.7);
-  z-index:200;
-  backdrop-filter:blur(4px);
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.overlay.open{display:flex}
-.detail-panel{
-  background:var(--deep2);
-  border:1px solid var(--border2);
-  border-radius:16px;
-  max-width:580px;
-  width:100%;
-  padding:36px;
-  position:relative;
-  animation:panelIn .25s ease;
-}
-@keyframes panelIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-.detail-close{
-  position:absolute;
-  top:16px;right:16px;
-  background:var(--deep3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  color:var(--text3);
-  font-size:18px;
-  width:32px;height:32px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  transition:all .15s;
-}
-.detail-close:hover{color:var(--text);border-color:var(--border2)}
-.detail-num{
-  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:12px;
-}
-.detail-arabic{
-  font-family:'Amiri',serif;
-  font-size:56px;
-  color:var(--gold-light);
-  text-align:center;
-  direction:rtl;
-  margin-bottom:4px;
-  line-height:1.2;
-}
-.detail-trans{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;
-  font-style:italic;
-  color:var(--text);
-  text-align:center;
-  margin-bottom:6px;
-}
-.detail-meaning{
-  font-size:16px;
-  color:var(--text2);
-  text-align:center;
-  margin-bottom:24px;
-}
-.detail-section{
-  background:var(--deep3);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:16px 20px;
-  margin-bottom:12px;
-}
-.detail-section-lbl{
-  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:6px;font-weight:600;
-}
-.detail-section p{font-size:14px;color:var(--text2);line-height:1.7}
-.detail-nav{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:20px;
-}
-.detail-nav button{
-  background:var(--deep3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:8px 18px;
-  color:var(--text2);
-  font-family:'Nunito Sans',sans-serif;
-  font-size:13px;
-  cursor:pointer;
-  transition:all .15s;
-}
-.detail-nav button:hover{color:var(--gold-light);border-color:var(--border2)}
-.detail-nav span{font-size:12px;color:var(--text3)}
-
-/* ── MOBILE TOGGLE ────────────────────────────────────── */
-.hamburger{
-  display:none;
-  position:fixed;top:16px;left:16px;
-  z-index:150;
-  background:var(--deep2);
-  border:1px solid var(--border);
-  border-radius:8px;
-  width:40px;height:40px;
-  align-items:center;justify-content:center;
-  cursor:pointer;
-  flex-direction:column;gap:5px;
-}
-.hamburger span{
-  width:20px;height:2px;
-  background:var(--gold);
-  border-radius:2px;
-  transition:.2s;
-}
-@media(max-width:900px){
-  .sidebar{transform:translateX(-100%)}
-  .sidebar.open{transform:translateX(0)}
-  .main{margin-left:0}
-  .hamburger{display:flex}
-  .hero{padding:60px 24px 32px}
-  .toolbar{padding:12px 24px}
-  .content{padding:24px 20px 48px}
-  .name-row{
-    grid-template-columns:36px 110px 130px 1fr;
-    grid-template-rows:auto auto;
-  }
-  .row-when,.row-badge{display:none}
-  .hero h1{font-size:34px}
-}
-
-/* ── ANIMATIONS ───────────────────────────────────────── */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ── CATEGORY COLORS ──────────────────────────────────── */
-.praise-color{color:var(--praise)!important}
-.mercy-color{color:var(--mercy)!important}
-.hardship-color{color:var(--hardship)!important}
-.guidance-color{color:var(--guidance)!important}
-.gratitude-color{color:var(--gratitude)!important}
-.fear-color{color:var(--fear)!important}
-.provision-color{color:var(--provision)!important}
-.protection-color{color:var(--protection)!important}
-
+/* BADGE COLOURS */
 .bg-praise{background:rgba(124,107,232,.12);color:#c4bcf5}
 .bg-mercy{background:rgba(59,184,122,.12);color:#7de0aa}
 .bg-hardship{background:rgba(224,96,64,.12);color:#f0a080}
@@ -565,21 +262,82 @@ body::before{
 .bg-fear{background:rgba(212,74,106,.12);color:#ec90a8}
 .bg-provision{background:rgba(224,144,48,.12);color:#f0c080}
 .bg-protection{background:rgba(208,100,160,.12);color:#e8a0d0}
+[data-theme="light"] .bg-praise{background:rgba(80,64,192,.12);color:#3028a0}
+[data-theme="light"] .bg-mercy{background:rgba(26,122,80,.12);color:#0A5030}
+[data-theme="light"] .bg-hardship{background:rgba(184,56,32,.12);color:#802010}
+[data-theme="light"] .bg-guidance{background:rgba(26,96,144,.12);color:#0A4060}
+[data-theme="light"] .bg-gratitude{background:rgba(42,128,80,.12);color:#145030}
+[data-theme="light"] .bg-fear{background:rgba(160,32,58,.12);color:#701828}
+[data-theme="light"] .bg-provision{background:rgba(176,96,16,.12);color:#703808}
+[data-theme="light"] .bg-protection{background:rgba(160,48,128,.12);color:#601858}
 
-/* scrollbar */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--deep)}
-::-webkit-scrollbar-thumb{background:rgba(201,168,76,.25);border-radius:3px}
-.sidebar-name-list{flex:1;overflow-y:auto;padding:8px 10px}
-.snl-item{
-  display:flex;align-items:center;gap:8px;
-  padding:5px 10px;border-radius:6px;cursor:pointer;
-  font-size:12px;color:var(--text3);transition:all .15s;
+/* ── DETAIL OVERLAY ───────────────────────────────────── */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.65);z-index:200;
+  backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:20px;
 }
-.snl-item:hover{background:var(--surface);color:var(--text2)}
-.snl-item .sn-num{width:22px;text-align:right;flex-shrink:0;color:var(--text3);font-size:11px}
-.snl-item .sn-ar{font-family:'Amiri',serif;font-size:16px;color:var(--gold);flex-shrink:0}
-.snl-item .sn-tr{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:13px}
+.overlay.open{display:flex;}
+.detail-panel{
+  background:var(--bg2);border:1px solid var(--border2);border-radius:16px;
+  max-width:560px;width:100%;padding:32px;position:relative;
+  animation:panelIn .22s ease;transition:background .3s;
+}
+@keyframes panelIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.detail-close{
+  position:absolute;top:14px;right:14px;background:var(--bg3);
+  border:1px solid var(--border);border-radius:8px;color:var(--text3);
+  font-size:17px;width:30px;height:30px;display:flex;align-items:center;
+  justify-content:center;cursor:pointer;transition:all .15s;
+}
+.detail-close:hover{color:var(--text);border-color:var(--border2);}
+.detail-num{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.detail-arabic{font-family:'Amiri',serif;font-size:52px;color:var(--gold-light);text-align:center;direction:rtl;margin-bottom:4px;line-height:1.2;}
+.detail-trans{font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;color:var(--text);text-align:center;margin-bottom:4px;}
+.detail-meaning{font-size:15px;color:var(--text2);text-align:center;margin-bottom:20px;}
+.detail-section{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:10px;}
+.detail-section-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600;}
+.detail-section p{font-size:13.5px;color:var(--text2);line-height:1.7;}
+.detail-nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;}
+.detail-nav button{
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+  padding:7px 16px;color:var(--text2);font-family:'Nunito Sans',sans-serif;
+  font-size:12.5px;cursor:pointer;transition:all .15s;
+}
+.detail-nav button:hover{color:var(--gold-light);border-color:var(--border2);}
+.detail-nav span{font-size:11.5px;color:var(--text3);}
+
+/* ── HAMBURGER ───────────────────────────────────────── */
+.hamburger{
+  display:none;position:fixed;top:14px;left:14px;z-index:150;
+  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+  width:38px;height:38px;align-items:center;justify-content:center;
+  cursor:pointer;flex-direction:column;gap:4px;
+}
+.hamburger span{width:18px;height:2px;background:var(--gold);border-radius:2px;}
+
+/* ── ANIMATIONS ───────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(201,168,76,.22);border-radius:3px}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .hamburger{display:flex}
+  .hero{padding:56px 22px 28px}
+  .toolbar{padding:10px 20px}
+  .content{padding:20px 16px 48px}
+  .name-row{grid-template-columns:36px 100px 120px 1fr;}
+  .row-when,.row-badge{display:none}
+  .hero h1{font-size:32px}
+}
 </style>
 </head>
 <body>
@@ -591,65 +349,115 @@ body::before{
 
 <!-- SIDEBAR -->
 <nav class="sidebar" id="sidebar">
+
+  <!-- Logo -->
   <div class="sidebar-logo">
     <div class="arabic-logo">أسماء الله الحسنى</div>
     <div class="eng-logo">The 99 Names of Allah</div>
   </div>
-  <div class="sidebar-search">
-    <input type="text" id="sidebarSearch" placeholder="Search names..." oninput="handleSearch(this.value)">
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle-wrap">
+    <span class="theme-label" id="theme-label">Dark Mode</span>
+    <label class="theme-toggle">
+      <input type="checkbox" id="themeToggleInput" onchange="toggleTheme()">
+      <div class="toggle-track"></div>
+      <div class="toggle-knob"><span class="theme-icon" id="theme-icon">🌙</span></div>
+    </label>
   </div>
+
+  <!-- Search -->
+  <div class="sidebar-search">
+    <input type="text" id="sidebarSearch" placeholder="Search names…" oninput="handleSearch(this.value)">
+  </div>
+
+  <!-- Situation Filters -->
   <div class="sidebar-cats">
-    <p>Filter by situation</p>
+    <div class="sidebar-cats-label">Filter by Situation</div>
+
     <button class="cat-btn active" data-cat="all" onclick="setCategory('all',this)">
-      <span class="cat-dot" style="background:var(--gold)"></span>
-      All Names
+      <span class="cat-icon">✦</span>
+      <span class="cat-info">
+        <span class="cat-name">All Names</span>
+        <span class="cat-sub">Complete list of 99</span>
+      </span>
       <span class="cat-count" id="cnt-all">99</span>
     </button>
+
     <button class="cat-btn" data-cat="praise" onclick="setCategory('praise',this)">
-      <span class="cat-dot" style="background:var(--praise)"></span>
-      Praise &amp; Glorification
+      <span class="cat-icon">🤲</span>
+      <span class="cat-info">
+        <span class="cat-name">Praise &amp; Glorification</span>
+        <span class="cat-sub">Dhikr &amp; worship</span>
+      </span>
       <span class="cat-count" id="cnt-praise"></span>
     </button>
+
     <button class="cat-btn" data-cat="mercy" onclick="setCategory('mercy',this)">
-      <span class="cat-dot" style="background:var(--mercy)"></span>
-      Mercy &amp; Forgiveness
+      <span class="cat-icon">💚</span>
+      <span class="cat-info">
+        <span class="cat-name">Mercy &amp; Forgiveness</span>
+        <span class="cat-sub">Tawbah &amp; rahma</span>
+      </span>
       <span class="cat-count" id="cnt-mercy"></span>
     </button>
+
     <button class="cat-btn" data-cat="hardship" onclick="setCategory('hardship',this)">
-      <span class="cat-dot" style="background:var(--hardship)"></span>
-      In Hardship &amp; Distress
+      <span class="cat-icon">🔥</span>
+      <span class="cat-info">
+        <span class="cat-name">In Hardship &amp; Distress</span>
+        <span class="cat-sub">Trials &amp; oppression</span>
+      </span>
       <span class="cat-count" id="cnt-hardship"></span>
     </button>
+
     <button class="cat-btn" data-cat="guidance" onclick="setCategory('guidance',this)">
-      <span class="cat-dot" style="background:var(--guidance)"></span>
-      Guidance &amp; Knowledge
+      <span class="cat-icon">🌟</span>
+      <span class="cat-info">
+        <span class="cat-name">Guidance &amp; Knowledge</span>
+        <span class="cat-sub">Lost &amp; seeking clarity</span>
+      </span>
       <span class="cat-count" id="cnt-guidance"></span>
     </button>
+
     <button class="cat-btn" data-cat="gratitude" onclick="setCategory('gratitude',this)">
-      <span class="cat-dot" style="background:var(--gratitude)"></span>
-      Gratitude &amp; Blessings
+      <span class="cat-icon">🌿</span>
+      <span class="cat-info">
+        <span class="cat-name">Gratitude &amp; Blessings</span>
+        <span class="cat-sub">Shukr &amp; appreciation</span>
+      </span>
       <span class="cat-count" id="cnt-gratitude"></span>
     </button>
+
     <button class="cat-btn" data-cat="fear" onclick="setCategory('fear',this)">
-      <span class="cat-dot" style="background:var(--fear)"></span>
-      Fear &amp; Awe
+      <span class="cat-icon">⚖️</span>
+      <span class="cat-info">
+        <span class="cat-name">Fear &amp; Awe</span>
+        <span class="cat-sub">Taqwa &amp; accountability</span>
+      </span>
       <span class="cat-count" id="cnt-fear"></span>
     </button>
+
     <button class="cat-btn" data-cat="provision" onclick="setCategory('provision',this)">
-      <span class="cat-dot" style="background:var(--provision)"></span>
-      Provision &amp; Sustenance
+      <span class="cat-icon">🌾</span>
+      <span class="cat-info">
+        <span class="cat-name">Provision &amp; Sustenance</span>
+        <span class="cat-sub">Rizq &amp; abundance</span>
+      </span>
       <span class="cat-count" id="cnt-provision"></span>
     </button>
+
     <button class="cat-btn" data-cat="protection" onclick="setCategory('protection',this)">
-      <span class="cat-dot" style="background:var(--protection)"></span>
-      Protection &amp; Safety
+      <span class="cat-icon">🛡️</span>
+      <span class="cat-info">
+        <span class="cat-name">Protection &amp; Safety</span>
+        <span class="cat-sub">Shield from harm</span>
+      </span>
       <span class="cat-count" id="cnt-protection"></span>
     </button>
   </div>
-  <div class="sidebar-name-list" id="sidebarNameList"></div>
-  <div class="sidebar-footer">
-    <span>&#10024;</span> Memorise &amp; Reflect Daily
-  </div>
+
+  <div class="sidebar-footer"><em>✦</em> Memorise · Reflect · Call upon Him</div>
 </nav>
 
 <!-- MAIN -->
@@ -657,18 +465,18 @@ body::before{
   <div class="hero">
     <div class="hero-eyebrow">Islamic Reference · Dhikr &amp; Supplication</div>
     <h1>Asma <em>ul-Husna</em></h1>
-    <p class="hero-sub">The beautiful names of Allah, each a door to His nearness. Learn their meanings, reflect on their depths, and call upon the right name for every moment of your life.</p>
+    <p class="hero-sub">The beautiful names of Allah — each a door to His nearness. Reflect on their depths and call upon the right name for every moment of your life.</p>
     <div class="hero-stats">
       <div class="stat-item"><div class="stat-num">99</div><div class="stat-lbl">Sacred Names</div></div>
       <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl">Situations</div></div>
-      <div class="stat-item"><div class="stat-num" id="showing-stat">99</div><div class="stat-lbl">Currently Showing</div></div>
+      <div class="stat-item"><div class="stat-num" id="showing-stat">99</div><div class="stat-lbl">Showing</div></div>
     </div>
   </div>
 
-  <div class="toolbar" id="toolbar">
+  <div class="toolbar">
     <div class="view-toggle">
-      <button class="view-btn active" onclick="setView('grid',this)">Grid</button>
-      <button class="view-btn" onclick="setView('list',this)">List</button>
+      <button class="view-btn active" onclick="setView('grid',this)">⊞ Grid</button>
+      <button class="view-btn" onclick="setView('list',this)">☰ List</button>
     </div>
     <select class="sort-select" onchange="handleSort(this.value)">
       <option value="num">Sort by number</option>
@@ -686,23 +494,25 @@ body::before{
 <!-- DETAIL OVERLAY -->
 <div class="overlay" id="overlay" onclick="closeDetail(event)">
   <div class="detail-panel" id="detailPanel">
-    <button class="detail-close" onclick="closeOverlay()">&#215;</button>
+    <button class="detail-close" onclick="closeOverlay()">✕</button>
     <div class="detail-num" id="d-num"></div>
     <div class="detail-arabic" id="d-ar"></div>
     <div class="detail-trans" id="d-tr"></div>
     <div class="detail-meaning" id="d-mean"></div>
     <div class="detail-section">
-      <div class="detail-section-lbl">Situational Guidance</div>
+      <div class="detail-section-lbl">Situational Guidance — When to Call Upon This Name</div>
       <p id="d-when"></p>
     </div>
-    <div class="detail-section">
-      <div class="detail-section-lbl">Category</div>
-      <p><span id="d-badge" class="badge"></span></p>
+    <div class="detail-section" style="display:flex;align-items:center;justify-content:space-between;padding:10px 18px;">
+      <div>
+        <div class="detail-section-lbl" style="margin-bottom:4px">Situation Category</div>
+        <span id="d-badge" class="badge"></span>
+      </div>
     </div>
     <div class="detail-nav">
-      <button id="d-prev" onclick="navigateDetail(-1)">&#8592; Previous</button>
+      <button id="d-prev" onclick="navigateDetail(-1)">← Prev</button>
       <span id="d-pos"></span>
-      <button id="d-next" onclick="navigateDetail(1)">Next &#8594;</button>
+      <button id="d-next" onclick="navigateDetail(1)">Next →</button>
     </div>
   </div>
 </div>
@@ -719,8 +529,8 @@ const NAMES=[
   [8,'الْعَزِيزُ','Al-Aziz','The Almighty','When feeling powerless or humiliated — seeking inner strength and dignity.','hardship'],
   [9,'الْجَبَّارُ','Al-Jabbar','The Compeller & Restorer','When broken-hearted or shattered; seeking repair of what is damaged.','hardship'],
   [10,'الْمُتَكَبِّرُ','Al-Mutakabbir','The Supreme in Greatness','In moments of pure glorification of Allah above all things.','praise'],
-  [11,'الْخَالِقُ','Al-Khaliq','The Creator','When in awe of creation; seeking a new beginning or project.','praise'],
-  [12,'الْبَارِئُ','Al-Bari','The Originator','When asking for a fresh start, renewal, or new creation in life.','provision'],
+  [11,'الْخَالِقُ','Al-Khaliq','The Creator','When in awe of creation; seeking a new beginning or fresh start.','praise'],
+  [12,'الْبَارِئُ','Al-Bari','The Originator','When asking for renewal, a fresh start, or new creation in life.','provision'],
   [13,'الْمُصَوِّرُ','Al-Musawwir','The Fashioner of Forms','When seeking good character, beauty, or righteous children.','provision'],
   [14,'الْغَفَّارُ','Al-Ghaffar','The Repeatedly Forgiving','When you keep falling into the same sin — His forgiveness never tires.','mercy'],
   [15,'الْقَهَّارُ','Al-Qahhar','The Subduer','When seeking help to overcome an oppressor, enemy, or inner temptation.','hardship'],
@@ -809,6 +619,7 @@ const NAMES=[
   [98,'الرَّشِيدُ','Ar-Rashid','The Guide to the Right Path','When seeking righteous direction and sound judgement.','guidance'],
   [99,'الصَّبُورُ','As-Sabur','The Most Patient','When enduring long trials — asking for patience like His own.','hardship'],
 ];
+
 const CAT_META={
   all:{label:'All',bg:'',color:'var(--gold)'},
   praise:{label:'Praise',bg:'bg-praise',color:'var(--praise)'},
@@ -821,8 +632,17 @@ const CAT_META={
   protection:{label:'Protection',bg:'bg-protection',color:'var(--protection)'},
 };
 
-let activeCat='all', searchQ='', viewMode='grid', sortMode='num', detailIdx=0, filteredData=[...NAMES];
+let activeCat='all',searchQ='',viewMode='grid',sortMode='num',detailIdx=0,filteredData=[...NAMES];
 
+/* ── THEME ─────────────────────────────────────────── */
+function toggleTheme(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('theme-icon').textContent=isDark?'☀️':'🌙';
+  document.getElementById('theme-label').textContent=isDark?'Light Mode':'Dark Mode';
+}
+
+/* ── FILTER / SORT ──────────────────────────────────── */
 function getFiltered(){
   let d=[...NAMES];
   if(activeCat!=='all') d=d.filter(r=>r[5]===activeCat);
@@ -833,63 +653,47 @@ function getFiltered(){
   return d;
 }
 
-function catColor(cat){return`var(--${cat})`}
-
+/* ── RENDER ─────────────────────────────────────────── */
 function buildCard(r,i){
-  const meta=CAT_META[r[5]];
-  return`<div class="name-card" style="--cat-color:${catColor(r[5])}" onclick="openDetail(${i})">
-    <div class="card-top">
-      <div class="card-num">${r[0]}</div>
-      <div class="card-arabic">${r[1]}</div>
-    </div>
+  const m=CAT_META[r[5]];
+  return`<div class="name-card" style="--cat-color:var(--${r[5]})" onclick="openDetail(${i})">
+    <div class="card-top"><div class="card-num">${r[0]}</div><div class="card-arabic">${r[1]}</div></div>
     <div class="card-transliteration">${r[2]}</div>
     <div class="card-meaning">${r[3]}</div>
     <div class="card-when">${r[4]}</div>
-    <div style="margin-top:12px"><span class="badge ${meta.bg}">${meta.label}</span></div>
+    <div style="margin-top:10px"><span class="badge ${m.bg}">${m.label}</span></div>
   </div>`;
 }
 function buildRow(r,i){
-  const meta=CAT_META[r[5]];
-  return`<div class="name-row" style="--cat-color:${catColor(r[5])}" onclick="openDetail(${i})">
+  const m=CAT_META[r[5]];
+  return`<div class="name-row" style="--cat-color:var(--${r[5]})" onclick="openDetail(${i})">
     <div class="row-num">${r[0]}</div>
     <div class="row-arabic">${r[1]}</div>
     <div class="row-trans">${r[2]}</div>
     <div class="row-mean">${r[3]}</div>
     <div class="row-when">${r[4]}</div>
-    <div class="row-badge"><span class="badge ${meta.bg}">${meta.label}</span></div>
+    <div class="row-badge"><span class="badge ${m.bg}">${m.label}</span></div>
   </div>`;
-}
-
-function buildSidebarList(){
-  const el=document.getElementById('sidebarNameList');
-  el.innerHTML=NAMES.map(r=>`<div class="snl-item" onclick="openDetailByNum(${r[0]})">
-    <span class="sn-num">${r[0]}</span>
-    <span class="sn-ar">${r[1].substring(0,6)}</span>
-    <span class="sn-tr">${r[2]}</span>
-  </div>`).join('');
 }
 
 function render(){
   filteredData=getFiltered();
-  const container=document.getElementById('namesContainer');
-  if(viewMode==='grid'){
-    container.innerHTML=filteredData.map((r,i)=>buildCard(r,i)).join('');
-  }else{
-    container.innerHTML=filteredData.map((r,i)=>buildRow(r,i)).join('');
-  }
+  const c=document.getElementById('namesContainer');
+  c.innerHTML=viewMode==='grid'
+    ?filteredData.map((r,i)=>buildCard(r,i)).join('')
+    :filteredData.map((r,i)=>buildRow(r,i)).join('');
   document.getElementById('result-info').textContent=`Showing ${filteredData.length} of 99 names`;
   document.getElementById('showing-stat').textContent=filteredData.length;
   updateCounts();
 }
 
 function updateCounts(){
-  const cats=['praise','mercy','hardship','guidance','gratitude','fear','provision','protection'];
-  cats.forEach(c=>{
-    document.getElementById('cnt-'+c).textContent=NAMES.filter(r=>r[5]===c).length;
-  });
+  ['praise','mercy','hardship','guidance','gratitude','fear','provision','protection']
+    .forEach(c=>{ document.getElementById('cnt-'+c).textContent=NAMES.filter(r=>r[5]===c).length; });
   document.getElementById('cnt-all').textContent=99;
 }
 
+/* ── CONTROLS ────────────────────────────────────────── */
 function setCategory(cat,btn){
   activeCat=cat;
   document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
@@ -901,36 +705,27 @@ function setView(mode,btn){
   viewMode=mode;
   document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  const c=document.getElementById('content');
-  c.className=mode==='grid'?'content grid-view':'content list-view';
+  document.getElementById('content').className=mode==='grid'?'content grid-view':'content list-view';
   render();
 }
 function handleSort(v){sortMode=v;render();}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+document.getElementById('sidebarSearch').addEventListener('input',e=>handleSearch(e.target.value));
 
+/* ── DETAIL ──────────────────────────────────────────── */
 function openDetail(idx){
-  detailIdx=idx;
-  showDetail(filteredData[idx]);
-  document.getElementById('overlay').classList.add('open');
-}
-function openDetailByNum(num){
-  const r=NAMES.find(n=>n[0]===num);
-  if(!r)return;
-  const idx=filteredData.findIndex(n=>n[0]===num);
-  detailIdx=idx>=0?idx:0;
-  filteredData=getFiltered();
-  showDetail(r);
+  detailIdx=idx;showDetail(filteredData[idx]);
   document.getElementById('overlay').classList.add('open');
 }
 function showDetail(r){
-  const meta=CAT_META[r[5]];
+  const m=CAT_META[r[5]];
   document.getElementById('d-num').textContent=`Name ${r[0]} of 99`;
   document.getElementById('d-ar').textContent=r[1];
   document.getElementById('d-tr').textContent=r[2];
   document.getElementById('d-mean').textContent=r[3];
   document.getElementById('d-when').textContent=r[4];
   const b=document.getElementById('d-badge');
-  b.textContent=meta.label;
-  b.className=`badge ${meta.bg}`;
+  b.textContent=m.label;b.className=`badge ${m.bg}`;
   document.getElementById('d-pos').textContent=`${detailIdx+1} / ${filteredData.length}`;
 }
 function navigateDetail(dir){
@@ -946,12 +741,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')navigateDetail(-1);
 });
 
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('open');
-}
-document.getElementById('sidebarSearch').addEventListener('input',e=>{handleSearch(e.target.value);});
-
-buildSidebarList();
 render();
 </script>
 </body>
